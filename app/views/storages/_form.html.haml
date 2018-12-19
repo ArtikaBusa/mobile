@@ -1,0 +1,16 @@
+= form_for @storage do |f|
+  - if @storage.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@storage.errors.count, "error")} prohibited this storage from being saved:"
+      %ul
+        - @storage.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :ram
+    = f.check_box :ram
+  .actions
+    = f.submit 'Save'

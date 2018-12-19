@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 1
+  storage_id: 1
+  color_id: 1
+  ram_id: 1
+  display_id: 1
+  processore_id: 1
+  price: 9.99
+  width: 1
+  height: 1
+  thickness: 1
+  weight: 1
+  front_camera: 1
+  rear_camera: 1
+
+two:
+  product_id: 1
+  storage_id: 1
+  color_id: 1
+  ram_id: 1
+  display_id: 1
+  processore_id: 1
+  price: 9.99
+  width: 1
+  height: 1
+  thickness: 1
+  weight: 1
+  front_camera: 1
+  rear_camera: 1

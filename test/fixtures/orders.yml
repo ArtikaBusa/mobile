@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  seller_id: 1
+  seller_product_variant_id: 1
+  price: 
+  discount: 
+  final_price: 
+  product_variant_id: 1
+  address: MyString
+  city: MyString
+  state: MyString
+  pincode: MyString
+  ordered_date: 2018-12-12 10:08:35
+  shipping_date: 2018-12-12 10:08:35
+  cancle_date: 2018-12-12 10:08:35
+
+two:
+  user_id: 1
+  seller_id: 1
+  seller_product_variant_id: 1
+  price: 
+  discount: 
+  final_price: 
+  product_variant_id: 1
+  address: MyString
+  city: MyString
+  state: MyString
+  pincode: MyString
+  ordered_date: 2018-12-12 10:08:35
+  shipping_date: 2018-12-12 10:08:35
+  cancle_date: 2018-12-12 10:08:35

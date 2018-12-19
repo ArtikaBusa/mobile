@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  available: false
+  release_year: 2018-12-11 17:29:48
+  brand_id: 1
+
+two:
+  description: MyString
+  available: false
+  release_year: 2018-12-11 17:29:48
+  brand_id: 1

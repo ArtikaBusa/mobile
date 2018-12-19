@@ -1,0 +1,22 @@
+= form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :available
+    = f.check_box :available
+  .field
+    = f.label :release_year
+    = f.datetime_select :release_year
+  .field
+    = f.label :brand_id
+    = f.number_field :brand_id
+  .actions
+    = f.submit 'Save'

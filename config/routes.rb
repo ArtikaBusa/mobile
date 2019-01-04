@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  devise_for :users
   resources :processors
   resources :displays
   resources :colors
@@ -7,5 +10,5 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
 
-  root to: "products#index"
+  root to: "brands#index"
 end

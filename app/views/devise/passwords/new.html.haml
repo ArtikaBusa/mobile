@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-sm-5.mx-auto
+      .card.card-light
+        .card-header
+          %h5.card-title.text-center Forgot your password?
+        .card-body
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            = devise_error_messages!
+            .field
+              = f.label :email
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+            %br/
+            .actions
+              = f.submit "Send me reset password instructions",class: "btn btn-lg btn-success btn-block"
+          = render "devise/shared/links"

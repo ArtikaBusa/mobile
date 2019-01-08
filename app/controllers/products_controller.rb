@@ -6,15 +6,22 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     if params[:search].present?
-      @products = Product.joins(:brand).where(brands: { name: params[:search] })
-      if params[:category_id].present?
-        @products = Product.left_outer_joins(:product_category).where(product_categories: { category_id: params[:search] })
-      elsif params[:color_id].present?
-        @products = Product.left_outer_joins(:product_variant).where(product_variants: { color_id: params[:search] })
-      end
+      @products = @products.where(brands: { name: params[:search] })
     end
     if params[:brand_id].present?
       @products = @products.where(brand_id: params[:brand_id])
+    end
+    if params[:category_id].present?
+      @products = Product.includes(:product_categories).where(product_categories: { category_id: params[:category_id] })
+    end
+    if params[:processore_id].present?
+      @products = Product.includes(:product_variants).where(product_variants: { processore_id: params[:processore_id] })
+    end
+    if params[:color_id].present?
+      @products = Product.includes(:product_variants).where(product_variants: { color_id: params[:color_id] })
+    end
+    if params[:display_id].present?
+      @products = Product.includes(:product_variants).where(product_variants: { display_id: params[:display_id] })
     end
   end
 

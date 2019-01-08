@@ -1,26 +1,27 @@
-.container
-  .row
-    .col-sm-5.mx-auto
-      .card.card-light
-        .card-header
-          %h5.card-title.text-center Sign In
-        .card-body
-          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            .field
-              = f.label :email
-              = f.email_field :email, autofocus: true, autocomplete: "email",:class =>"form-control"
-            %br/
-            .field
-              = f.label :password
-              = f.password_field :password, autocomplete: "off",:class =>"form-control"
-            %br/
-            - if devise_mapping.rememberable?
+#mybody
+  .container
+    .row
+      .col-sm-5.mx-auto
+        .card.card-light
+          .card-header
+            %h5.card-title.text-center Sign In
+          .card-body
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
               .field
-                = f.check_box :remember_me
-                = f.label :remember_me
-            %br/
-            .actions
-              = f.submit "Log in" ,:class => "btn btn-lg btn-success btn-block"
-        %br/
-        .card-footer
-          = render "devise/shared/links"
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: "email",:class =>"form-control"
+              %br/
+              .field
+                = f.label :password
+                = f.password_field :password, autocomplete: "off",:class =>"form-control"
+              %br/
+              - if devise_mapping.rememberable?
+                .field
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+              %br/
+              .actions
+                = f.submit "Log in" ,:class => "btn btn-lg btn-success btn-block"
+          %br/
+          .card-footer
+            = render "devise/shared/links"

@@ -6,22 +6,32 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     if params[:search].present?
-      @products = @products.where(brands: { name: params[:search] })
+      @products = Product.joins(:brand).where(brands: { name: params[:search] })
     end
+    @brand_ids = []
     if params[:brand_id].present?
-      @products = @products.where(brand_id: params[:brand_id])
+      @brand_ids = params[:brand_id].split(',')
+      @products = @products.where(brand_id: @brand_ids)
     end
+    @category_ids = []
     if params[:category_id].present?
-      @products = Product.includes(:product_categories).where(product_categories: { category_id: params[:category_id] })
+      @category_ids = params[:category_id].split(',')
+      @products = Product.left_outer_joins(:product_categories).where(product_categories: { category_id: @category_ids })
     end
+    @processore_ids = []
     if params[:processore_id].present?
-      @products = Product.includes(:product_variants).where(product_variants: { processore_id: params[:processore_id] })
+      @processore_ids = params[:processore_id].split(',')
+      @products = Product.left_outer_joins(:product_variants).where(product_variants: { processore_id: @processore_ids })
     end
+    @color_ids = []
     if params[:color_id].present?
-      @products = Product.includes(:product_variants).where(product_variants: { color_id: params[:color_id] })
+      @color_ids = params[:color_id].split(',')
+      @products = Product.left_outer_joins(:product_variants).where(product_variants: { color_id: @color_ids })
     end
+    @display_ids = []
     if params[:display_id].present?
-      @products = Product.includes(:product_variants).where(product_variants: { display_id: params[:display_id] })
+      @display_ids = params[:display_id].split(',')
+      @products = Product.left_outer_joins(:product_variants).where(product_variants: { display_id: @display_ids })
     end
   end
 

@@ -7,7 +7,10 @@
         .filter-content
           .card-body
             - Brand.all.each do |brand|
-              %input{type: "checkbox", value: brand.id, id: "mycheck", onclick: "set_brand(this, '#{brand.id}');"}
+              - checked = false
+              - if @brand_ids.include?(brand.id.to_s)
+                - checked = true
+              = check_box_tag("brand", brand.id, checked, { class: 'chk-brand', onclick: "set_brand();"  } )
               %span.form-check-label= brand.name
               %br
       %article.card-group-item
@@ -16,7 +19,10 @@
         .filter-content
           .card-body
             - Category.all.each do |category|
-              %input{type: "checkbox", value: category.id, onclick: "set_category(this, '#{category.id}');"}
+              - checked = false
+              - if @category_ids.include?(category.id.to_s)
+                - checked = true
+              = check_box_tag("category", category.id, checked, { class: 'chk-category', onclick: "set_category();"  } )
               %span.form-check-label= category.name
               %br
       %article.card-group-item
@@ -25,7 +31,10 @@
         .filter-content
           .card-body
             - Processor.all.each do |processor|
-              %input{type: "checkbox", value: processor.id, onclick: "set_processore(this, '#{processor.id}');"}
+              - checked = false
+              - if @processore_ids.include?(processor.id.to_s)
+                - checked = true
+              = check_box_tag("processor", processor.id, checked, { class: 'chk-processor', onclick: "set_processore();"  } )
               %span.form-check-label= processor.name
               %br
       %article.card-group-item
@@ -34,7 +43,10 @@
         .filter-content
           .card-body
             - Color.all.each do |color|
-              %input{type: "checkbox", value: color.id, onclick: "set_color(this, '#{color.id}');"}
+              - checked = false
+              - if @color_ids.include?(color.id.to_s)
+                - checked = true
+              = check_box_tag("color", color.id, checked, { class: 'chk-color', onclick: "set_color();"  } )
               %span.form-check-label= color.name
               %br
       %article.card-group-item
@@ -43,13 +55,16 @@
         .filter-content
           .card-body
             - Display.all.each do |display|
-              %input{type: "checkbox", value: display.id, onclick: "set_display(this, '#{display.id}');"}
+              - checked = false
+              - if @display_ids.include?(display.id.to_s)
+                - checked = true
+              = check_box_tag("display", display.id, checked, { class: 'chk-display', onclick: "set_display();"  } )
               %span.form-check-label= display.name
               %br
   %col-sm-10
     %form{ action: products_path, id: 'search_form' }
       %input{ type: 'hidden', name: 'search', value: params[:search] }
-      %input{ type: 'hidden', name: 'brand_id', value: params[:brand_id], id: 'brand_id' }
+      %input{ type: 'hidden', name: 'brand_id',value: params[:brand_id], id: 'brand_id' }
       %input{ type: 'hidden', name: 'category_id', value: params[:category_id], id: 'category_id' }
       %input{ type: 'hidden', name: 'processore_id', value: params[:processore_id], id: 'processore_id' }
       %input{ type: 'hidden', name: 'color_id', value: params[:color_id], id: 'color_id' }
@@ -77,33 +92,45 @@
               = link_to 'New Product', new_product_path
 
 :javascript
-  function set_brand(ele,brand_id){
-    if( $(ele).prop('checked',true) ){
-      $('#brand_id').val(brand_id);
-      $('#search_form').submit();
-    }
+  var array = [];
+  var selected;
+  function set_brand(){
+    $(".chk-brand:checked").each(function() {
+      array.push($(this).val());
+    });
+    selected = array.join(',');
+    $('#brand_id').val(selected);
+    $('#search_form').submit();
   }
-  function set_category(ele,category_id){
-    if( $(ele).prop('checked') ){
-      $('#category_id').val(category_id);
-      $('#search_form').submit();
-    }
+  function set_category(){
+    $(".chk-category:checked").each(function() {
+      array.push($(this).val());
+    });
+    selected = array.join(',');
+    $('#category_id').val(selected);
+    $('#search_form').submit();
   }
-  function set_processore(ele,processore_id){
-    if( $(ele).prop('checked') ){
-      $('#processore_id').val(processore_id);
-      $('#search_form').submit();
-    }
+  function set_processore(){
+    $(".chk-processore:checked").each(function() {
+      array.push($(this).val());
+    });
+    selected = array.join(',');
+    $('#processor_id').val(selected);
+    $('#search_form').submit();
   }
-  function set_color(ele,color_id){
-    if( $(ele).prop('checked') ){
-      $('#color_id').val(color_id);
-      $('#search_form').submit();
-    }
+  function set_color(){
+    $(".chk-color:checked").each(function() {
+      array.push($(this).val());
+    });
+    selected = array.join(',');
+    $('#color_id').val(selected);
+    $('#search_form').submit();
   }
-  function set_display(ele,display_id){
-    if( $(ele).prop('checked') ){
-      $('#display_id').val(display_id);
-      $('#search_form').submit();
-    }
+  function set_display(){
+    $(".chk-display:checked").each(function() {
+      array.push($(this).val());
+    });
+    selected = array.join(',');
+    $('#display_id').val(selected);
+    $('#search_form').submit();
   }

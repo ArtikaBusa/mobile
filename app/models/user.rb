@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :contact_no, numericality: true, length: { maximum: 15 }, uniqueness: true
   has_many :orders, dependent: :destroy
+  has_one_attached :profile_photo
 end

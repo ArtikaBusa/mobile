@@ -33,3 +33,11 @@
     padding: 0 15px;
     border: 2;
 }
+.round-image-50 {
+    margin: auto;
+    border: 1px solid #d9d9d9;
+    border-radius: 100px;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}

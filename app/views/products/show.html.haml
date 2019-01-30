@@ -12,6 +12,16 @@
 %p
   %b Brand:
   = @product.brand_id
+- if @product.mobile_photos.attached?
+  %p
+    %strong mobile_photos:
+    - @product.mobile_photos.each do |mobile_photo|
+      - if mobile_photo.representable?
+        = link_to image_tag(mobile_photo.representation(resize: '500x500')), mobile_photo
+      - elsif mobile_photo.image?
+        = link_to image_tag(mobile_photo, width: 500), mobile_photo
+      - else
+        = link_to mobile_photo.filename, mobile_photo
 
 = link_to 'Edit', edit_product_path(@product)
 \|

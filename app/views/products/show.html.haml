@@ -1,28 +1,34 @@
-%p#notice= notice
-
-%p
-  %b Description:
-  = @product.description
-%p
-  %b Available:
-  = @product.available
-%p
-  %b Release year:
-  = @product.release_year
-%p
-  %b Brand:
-  = @product.brand_id
-- if @product.mobile_photos.attached?
-  %p
-    %strong mobile_photos:
-    - @product.mobile_photos.each do |mobile_photo|
-      - if mobile_photo.representable?
-        = link_to image_tag(mobile_photo.representation(resize: '500x500')), mobile_photo
-      - elsif mobile_photo.image?
-        = link_to image_tag(mobile_photo, width: 500), mobile_photo
-      - else
-        = link_to mobile_photo.filename, mobile_photo
-
-= link_to 'Edit', edit_product_path(@product)
-\|
-= link_to 'Back', products_path
+.container
+  .row
+    .col-lg-12
+      .card
+        %strong Photos
+        .column
+          - if @product.mobile_photos.attached?
+            - @product.mobile_photos.each do |mobile_photo|
+              - if mobile_photo.representable?
+                = link_to image_tag(mobile_photo.representation(resize: '200x200')), mobile_photo
+        %h4.card-header= @product.description
+        .card-body
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Available:
+              .col
+                = @product.available
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Release_year:
+              .col
+                = @product.release_year
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success brand_id
+              .col
+                = @product.brand_id
+        .card-footer
+          = link_to 'Edit', edit_product_path(@product)
+          \|
+          = link_to 'Back', products_path

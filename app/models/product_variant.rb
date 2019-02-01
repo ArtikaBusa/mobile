@@ -1,6 +1,4 @@
 class ProductVariant < ApplicationRecord
-  attr_accessor :color_id, :product_id
-
   belongs_to :product, optional: true
   belongs_to :storage, optional: true
   belongs_to :color, optional: true

@@ -35,8 +35,8 @@
                 = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
               %br/
               .field
-                = f.label :image
-                = f.file_field :image, autofocus: true, autocomplete: "images",:class =>"form-control"
+                = f.label :profile_photo
+                = f.file_field :profile_photo, autofocus: true, autocomplete: "profile_photo",:class =>"form-control"
               %br/
               .actions
                 = f.submit "sign up" ,:class => "btn btn-lg btn-success btn-block"

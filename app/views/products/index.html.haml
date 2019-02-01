@@ -73,23 +73,16 @@
       %h2 no record found
     - else
       - @products.each do |product|
-        .column
-          .card
-            .card-header
-              = product.description
-            .card-body
-              .product-description
-                %h6 available or not
-                = product.available
-                %h6 brand_id
-                = product.brand_id
-                %h6 release year
-                = product.release_year
-            .card-footer
-              = link_to 'Show', product
-              = link_to 'Edit', edit_product_path(product)
-              = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
-              = link_to 'New Product', new_product_path
+        .card
+          %h4.card-header= product.description
+          .card-body
+            - if product.mobile_photos.attached?
+              = image_tag(product.mobile_photos.first, width: "100px", height: "100px")
+          .card-footer
+            = link_to 'Show', product
+            = link_to 'Edit', edit_product_path(product)
+            = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'New Product', new_product_path
 
 :javascript
   var array = [];

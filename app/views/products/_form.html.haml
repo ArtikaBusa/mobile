@@ -5,24 +5,38 @@
       %ul
         - @product.errors.full_messages.each do |message|
           %li= message
-
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :available
-    = f.check_box :available
-  .field
-    = f.label :release_year
-    = f.datetime_select :release_year
-  .field
-    = f.label :brand_id
-    = f.number_field :brand_id
-  .field
-    = f.label :mobile_photos
-    = f.file_field :mobile_photos, multiple: true
-  .field
-    = f.label :color
-    = collection_select(:@colors, :color_id, Color.all, :id, :name, prompt: true)
-  .actions
-    = f.submit 'Save'
+  .container
+    .row
+      .col-sm-13.mx-auto
+        .card
+          .card-header
+            %h5.card-title.text-center Products
+            .card-body
+              .row
+                .col-lg-6
+                  %strong= f.label :description
+                  = f.text_field :description,class: "form-control"
+                  %br/
+                .col-lg-1
+                  %strong= f.label :available
+                  = f.check_box :available, class: "form-control"
+                .col-lg-6
+                  %strong= f.label :release_year
+                  %br/
+                  = f.datetime_select :release_year, class: "form-control"
+                  %br/
+                .col-lg-6
+                  %strong= f.label :brand_id
+                  = f.number_field :brand_id,class: "form-control"
+                  %br/
+                .col-lg-6
+                  %strong= f.label :mobile_photos
+                  = f.file_field :mobile_photos, multiple: true , class: "form-control"
+                  %br/
+                .col-lg-6
+                  %strong= f.label :color
+                  = collection_select(:@colors, :color_id, Color.all, :id, :name, prompt: true)
+                .actions
+                  %br/
+                  .text-center
+                    = f.submit "Create" ,class: "btn btn-success"

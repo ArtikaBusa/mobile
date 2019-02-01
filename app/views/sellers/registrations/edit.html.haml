@@ -9,7 +9,7 @@
             = form_for(@seller, as: resource_name, url: registration_path(resource_name), method: :patch) do |f|
               .field
                 .round-image-50
-                  = image_tag(@seller.image, width: "200px", height: "200px")
+                  = image_tag(@seller.profile_photo, width: "200px", height: "200px")
               %br/
               .field
                 = f.label :name

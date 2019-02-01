@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 
   authenticated :seller do
-     root 'products#index', as: :authenticated_root
+     root 'products#new', as: :authenticated_root
    end
 
    root to: 'brands#index'

@@ -1,6 +1,4 @@
 class Product < ApplicationRecord
-  attr_accessor :colors_attributes
-
   belongs_to :brand
   has_many :product_variants
   has_many :product_categories, dependent: :delete_all

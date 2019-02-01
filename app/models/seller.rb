@@ -11,5 +11,5 @@ class Seller < ApplicationRecord
   has_many :seller_products, dependent: :delete_all
   has_many :product_variants, through: :seller_product_variants
   has_many :products, through: :seller_products
-  has_one_attached :image
+  has_one_attached :profile_photo
 end

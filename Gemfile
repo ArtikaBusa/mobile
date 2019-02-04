@@ -5,10 +5,10 @@ ruby '2.5.1'
 gem 'activeadmin'
 gem 'devise'
 gem 'haml-rails', '>= 0.3.4', group: :development
-gem 'jquery-rails'
-gem 'rails', '~> 5.2.1'
-
 gem 'image_processing', '~> 1.2'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'rails', '~> 5.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

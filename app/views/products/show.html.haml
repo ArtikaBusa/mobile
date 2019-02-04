@@ -13,6 +13,13 @@
           %p.card-text
             .row.container
               .col-lg-4
+                %strong.text-success Price
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.price
+          %p.card-text
+            .row.container
+              .col-lg-4
                 %strong.text-success Available:
               .col
                 = @product.available
@@ -25,9 +32,86 @@
           %p.card-text
             .row.container
               .col-lg-4
-                %strong.text-success brand_id
+                %strong.text-success Storage
               .col
-                = @product.brand_id
+                - @product.storages.each do |storage|
+                  = storage.name
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Color
+              .col
+                - @product.colors.each do |color|
+                  = color.name
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Display
+              .col
+                - @product.displays.each do |display|
+                  = display.name
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Processor
+              .col
+                - @product.processors.each do |processor|
+                  = processor.name
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Brand
+              .col
+                - @product.brand.name
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Category
+              .col
+                - @product.categories.each do |category|
+                  = category.name
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Width
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.width
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Height
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.height
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Thickness
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.thickness
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Weight
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.weight
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Front Camera
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.front_camera
+          %p.card-text
+            .row.container
+              .col-lg-4
+                %strong.text-success Rear Camera
+              .col
+                - @product.product_variants.each do |product_variant|
+                  = product_variant.rear_camera
         .card-footer
           = link_to 'Edit', edit_product_path(@product)
           \|

@@ -4,34 +4,34 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.order(:description).page(params[:page]).per(2)
     if params[:search].present?
-      @products = Product.joins(:brand).where(brands: { name: params[:search] })
+      @products = Product.joins(:colors, :displays).where('colors.name LIKE ? OR displays.name LIKE  ?', "%#{params[:search]}%", "%#{params[:search]}%")
     end
     @brand_ids = []
     if params[:brand_id].present?
       @brand_ids = params[:brand_id].split(',')
-      @products = @products.where(brand_id: @brand_ids)
+      @products = @products.where(brand_id: @brand_ids).order(:description).page(params[:page]).per(2)
     end
     @category_ids = []
     if params[:category_id].present?
       @category_ids = params[:category_id].split(',')
-      @products = Product.left_outer_joins(:product_categories).where(product_categories: { category_id: @category_ids })
+      @products = Product.left_outer_joins(:product_categories).where(product_categories: { category_id: @category_ids }).order(:description).page(params[:page]).per(2)
     end
     @processore_ids = []
     if params[:processore_id].present?
       @processore_ids = params[:processore_id].split(',')
-      @products = Product.left_outer_joins(:product_variants).where(product_variants: { processore_id: @processore_ids })
+      @products = Product.left_outer_joins(:product_variants).where(product_variants: { processore_id: @processore_ids }).order(:description).page(params[:page]).per(2)
     end
     @color_ids = []
     if params[:color_id].present?
       @color_ids = params[:color_id].split(',')
-      @products = Product.left_outer_joins(:product_variants).where(product_variants: { color_id: @color_ids })
+      @products = Product.left_outer_joins(:product_variants).where(product_variants: { color_id: @color_ids }).order(:description).page(params[:page]).per(2)
     end
     @display_ids = []
     if params[:display_id].present?
       @display_ids = params[:display_id].split(',')
-      @products = Product.left_outer_joins(:product_variants).where(product_variants: { display_id: @display_ids })
+      @products = Product.left_outer_joins(:product_variants).where(product_variants: { display_id: @display_ids }).order(:description).page(params[:page]).per(2)
     end
   end
 

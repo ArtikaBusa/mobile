@@ -69,20 +69,21 @@
       %input{ type: 'hidden', name: 'processore_id', value: params[:processore_id], id: 'processore_id' }
       %input{ type: 'hidden', name: 'color_id', value: params[:color_id], id: 'color_id' }
       %input{ type: 'hidden', name: 'display_id', value: params[:display_id], id: 'display_id' }
-    - if @products.empty?
-      %h2 no record found
-    - else
-      - @products.each do |product|
-        .card
-          %h4.card-header= product.description
-          .card-body
-            - if product.mobile_photos.attached?
-              = image_tag(product.mobile_photos.first, width: "100px", height: "100px")
-          .card-footer
-            = link_to 'Show', product
-            = link_to 'Edit', edit_product_path(product)
-            = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
-            = link_to 'New Product', new_product_path
+      - if @products.empty?
+        %h2 no record found
+      - else
+        - @products.each do |product|
+          .card.display
+            .card-img-top
+              - if product.mobile_photos.attached?
+                = image_tag(product.mobile_photos.first, width: "300px", height: "500px")
+            .card-body
+              %h5.card-title= product.description
+            = link_to 'Show', product, class: "btn btn-primary"
+        %br/
+        %br/
+        .pagination.justify-content-center
+          = paginate @products
 
 :javascript
   var array = [];
@@ -127,3 +128,4 @@
     $('#display_id').val(selected);
     $('#search_form').submit();
   }
+  

@@ -18,7 +18,15 @@
   background-repeat:no-repeat;
 }
 .card {
-  margin: 5px;
+  margin: 10px;
+}
+.display{
+  display:inline-block;
+  text-align: center;
+  width: 400px;
+  margin-left: 80px;
+  margin-right: 80px;
+  padding: 15px;
 }
 #mybody{
   background-image: url("android.jpg");
@@ -27,11 +35,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.column {
+.pagination a, .pagination span.current, .pagination span.gap {
     float: left;
-    width: 40%;
-    padding: 0 15px;
-    border: 2;
+    padding: 0 20px;
+    line-height: 40px;
+    background-color: white;
+    border: 2px solid #DDD;
+    border-left-width: 0;
 }
 .round-image-50 {
     margin: auto;

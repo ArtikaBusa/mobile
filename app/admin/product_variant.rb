@@ -1,5 +1,5 @@
 ActiveAdmin.register ProductVariant do
-  permit_params :product_id, :storage_id, :color_id, :display_id, :processore_id,
+  permit_params :product_id, :storage_id, :color_id, :display_id, :processor_id,
                 :price, :width, :height, :thickness, :weight, :front_camera, :rear_camera
 
   index do
@@ -9,7 +9,7 @@ ActiveAdmin.register ProductVariant do
     column :storage_id
     column :color_id
     column :display_id
-    column :processore_id
+    column :processor_id
     column :price
     column :width
     column :height
@@ -24,7 +24,7 @@ ActiveAdmin.register ProductVariant do
   filter :storage_id
   filter :color_id
   filter :display_id
-  filter :processore_id
+  filter :processor_id
   filter :price
   filter :width
   filter :height

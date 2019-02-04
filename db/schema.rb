@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_131323) do
+ActiveRecord::Schema.define(version: 2019_02_04_105923) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_131323) do
     t.integer "storage_id"
     t.integer "color_id"
     t.integer "display_id"
-    t.integer "processore_id"
+    t.integer "processor_id"
     t.decimal "price"
     t.integer "width", limit: 5
     t.integer "height", limit: 5
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_131323) do
     t.datetime "updated_at", null: false
     t.index ["color_id"], name: "index_product_variants_on_color_id"
     t.index ["display_id"], name: "index_product_variants_on_display_id"
-    t.index ["processore_id"], name: "index_product_variants_on_processore_id"
+    t.index ["processor_id"], name: "index_product_variants_on_processor_id"
     t.index ["product_id"], name: "index_product_variants_on_product_id"
     t.index ["storage_id"], name: "index_product_variants_on_storage_id"
   end

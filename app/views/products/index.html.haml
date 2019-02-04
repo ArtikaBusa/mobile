@@ -32,9 +32,9 @@
           .card-body
             - Processor.all.each do |processor|
               - checked = false
-              - if @processore_ids.include?(processor.id.to_s)
+              - if @processor_ids.include?(processor.id.to_s)
                 - checked = true
-              = check_box_tag("processor", processor.id, checked, { class: 'chk-processor', onclick: "set_processore();"  } )
+              = check_box_tag("processor", processor.id, checked, { class: 'chk-processor', onclick: "set_processor();"  } )
               %span.form-check-label= processor.name
               %br
       %article.card-group-item
@@ -61,14 +61,27 @@
               = check_box_tag("display", display.id, checked, { class: 'chk-display', onclick: "set_display();"  } )
               %span.form-check-label= display.name
               %br
+      %article.card-group-item
+        %header.card-header
+          %h6 Storage
+        .filter-content
+          .card-body
+            - Storage.all.each do |storage|
+              - checked = false
+              - if @storage_ids.include?(storage.id.to_s)
+                - checked = true
+              = check_box_tag("storage", storage.id, checked, { class: 'chk-storage', onclick: "set_storage();"  } )
+              %span.form-check-label= storage.name
+              %br
   %col-sm-10
     %form{ action: products_path, id: 'search_form' }
       %input{ type: 'hidden', name: 'search', value: params[:search] }
       %input{ type: 'hidden', name: 'brand_id',value: params[:brand_id], id: 'brand_id' }
       %input{ type: 'hidden', name: 'category_id', value: params[:category_id], id: 'category_id' }
-      %input{ type: 'hidden', name: 'processore_id', value: params[:processore_id], id: 'processore_id' }
+      %input{ type: 'hidden', name: 'processor_id', value: params[:processor_id], id: 'processor_id' }
       %input{ type: 'hidden', name: 'color_id', value: params[:color_id], id: 'color_id' }
       %input{ type: 'hidden', name: 'display_id', value: params[:display_id], id: 'display_id' }
+      %input{ type: 'hidden', name: 'storage_id', value: params[:storage_id], id: 'storage_id' }
       - if @products.empty?
         %h2 no record found
       - else
@@ -104,8 +117,8 @@
     $('#category_id').val(selected);
     $('#search_form').submit();
   }
-  function set_processore(){
-    $(".chk-processore:checked").each(function() {
+  function set_processor(){
+    $(".chk-processor:checked").each(function() {
       array.push($(this).val());
     });
     selected = array.join(',');
@@ -128,4 +141,11 @@
     $('#display_id').val(selected);
     $('#search_form').submit();
   }
-  
+  function set_storage(){
+    $(".chk-storage:checked").each(function() {
+      array.push($(this).val());
+    });
+    selected = array.join(',');
+    $('#storage_id').val(selected);
+    $('#search_form').submit();
+  }

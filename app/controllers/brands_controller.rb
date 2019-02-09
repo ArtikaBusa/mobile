@@ -3,8 +3,8 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.all
-    # @brands = @brands.find(params[:brand_id]) if params[:brand_id].present?
+    # @brands = Brand.all
+    @products = Product.joins(:brand).where(release_year: Time.current.beginning_of_month..Time.current.end_of_month).order(:description).page(params[:page]).per(2)
   end
 
   # GET /brands/1

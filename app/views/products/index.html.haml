@@ -3,6 +3,14 @@
     .card
       %article.card-group-item
         %header.card-header
+          %h6 Prices
+        .filter-content
+          .card-body
+            #the_slider
+            %br
+            %span#output
+      %article.card-group-item
+        %header.card-header
           %h6 Brands
         .filter-content
           .card-body
@@ -75,28 +83,34 @@
               %br
   %col-sm-10
     %form{ action: products_path, id: 'search_form' }
-      %input{ type: 'hidden', name: 'search', value: params[:search] }
-      %input{ type: 'hidden', name: 'brand_id',value: params[:brand_id], id: 'brand_id' }
-      %input{ type: 'hidden', name: 'category_id', value: params[:category_id], id: 'category_id' }
+      %input{ type: 'hidden', name: 'search',       value: params[:search] }
+      %input{ type: 'hidden', name: 'brand_id',     value: params[:brand_id],     id: 'brand_id' }
+      %input{ type: 'hidden', name: 'category_id',  value: params[:category_id],  id: 'category_id' }
       %input{ type: 'hidden', name: 'processor_id', value: params[:processor_id], id: 'processor_id' }
-      %input{ type: 'hidden', name: 'color_id', value: params[:color_id], id: 'color_id' }
-      %input{ type: 'hidden', name: 'display_id', value: params[:display_id], id: 'display_id' }
-      %input{ type: 'hidden', name: 'storage_id', value: params[:storage_id], id: 'storage_id' }
-      - if @products.empty?
-        %h2 no record found
-      - else
-        - @products.each do |product|
-          .card.display
-            .card-img-top
-              - if product.mobile_photos.attached?
-                = image_tag(product.mobile_photos.first, width: "300px", height: "500px")
-            .card-body
-              %h5.card-title= product.description
-            = link_to 'Show', product, class: "btn btn-primary"
-        %br/
-        %br/
-        .pagination.justify-content-center
-          = paginate @products
+      %input{ type: 'hidden', name: 'color_id',     value: params[:color_id],     id: 'color_id' }
+      %input{ type: 'hidden', name: 'display_id',   value: params[:display_id],   id: 'display_id' }
+      %input{ type: 'hidden', name: 'storage_id',   value: params[:storage_id],   id: 'storage_id' }
+      %input{ type: 'hidden', name: 'price_min',    value: params[:price_min],    id: 'price_min' }
+      %input{ type: 'hidden', name: 'price_max',    value: params[:price_max],    id: 'price_max' }
+
+    - if @products.empty?
+      %h2 no record found
+    - else
+      - @products.each do |product|
+        .card.display
+          .card-img-top
+            - if product.mobile_photos.attached?
+              = image_tag(product.mobile_photos.first, width: "300px", height: "500px")
+          .card-body
+            %h4.card-title= product.description
+            %strong.text-success Price ₹
+            - product.product_variants.each do |product_variant|
+              = product_variant.price
+          = link_to 'Show', product, class: "btn btn-primary"
+      %br/
+      %br/
+      .pagination.justify-content-center
+        = paginate @products
 
 :javascript
   var array = [];
@@ -149,3 +163,29 @@
     $('#storage_id').val(selected);
     $('#search_form').submit();
   }
+  $(document).ready(function() {
+    var currentminvalue = #{@price_min. present? ? @price_min : '5000'};
+    var currentmaxvalue = #{@price_max.present? ? @price_max : '50000'};
+    var slider = $("#the_slider").slider({
+    range: true,
+    min: 5000,
+    max: 50000,
+    step: 1000,
+    values: [currentminvalue, currentmaxvalue],
+    slide: function(event, ui) {
+      $("#output").val("₹ "+ui.values[0] + ' - ₹ ' + ui.values[1]);
+      currentminvalue = ui.values[0];
+      currentmaxvalue = ui.values[1];
+    },
+    stop: function(event, ui) {
+      $("#price_min").val(ui.values[0]);
+      $("#price_max").val(ui.values[1]);
+      currentminvalue = ui.values[0];
+      currentmaxvalue = ui.values[1];
+      $('#search_form').submit();
+      }
+    });
+    console.log(currentminvalue);
+    console.log(currentmaxvalue);
+    $("#output").html('₹ '+ $("#the_slider").slider("values",0) + ' - ₹ ' + $("#the_slider").slider("values",1));
+  });

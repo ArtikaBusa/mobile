@@ -8,44 +8,46 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    %nav#mynav.navbar.fixed-top.navbar-expand-sm.bg-dark.navbar-dark
+      %a.navbar-brand
+        %strong.title Mobilestore
+      %ul.navbar-nav
+        - if user_signed_in?
+          %li.nav-item
+            = link_to 'Dashboard', brands_path, class: "nav-link"
+          %li.nav-item
+            = link_to 'Product', products_path, class: "nav-link"
+          %li.nav-item
+            = link_to 'Add to cart', products_path, class: "nav-link"
+          %li.nav-item
+            = link_to 'Edit profile', edit_user_registration_path, class: "nav-link"
+          %li.nav-item
+            = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
+          .search_bar
+            = form_tag products_path, method: 'get',class: 'form-inline' do
+              = text_field_tag :search, params[:search], placeholder: 'Search', class: "search form-control  autocomplete"
+              = submit_tag "Search", class: 'btn btn-success'
+        - elsif seller_signed_in?
+          %li.nav-item
+            = link_to 'Product', products_path, class: "nav-link"
+          %li.nav-item
+            = link_to 'Add product', new_product_path, class: "nav-link"
+          %li.nav-item
+            = link_to 'Edit profile', edit_seller_registration_path, class: "nav-link"
+          %li.nav-item
+            = link_to "Logout", destroy_seller_session_path, method: :delete, class: "nav-link"
+        - else
+          %li.nav-item
+            = link_to "User Sign In", new_user_session_path, class: "nav-link"
+          %li.nav-item
+            = link_to "User Sign Up", new_user_registration_path, class: "nav-link"
+          %li.nav-item
+            = link_to "Seller Sign In", new_seller_session_path, class: "nav-link"
+          %li.nav-item
+            = link_to "Seller Sign Up", new_seller_registration_path, class: "nav-link"
     .container
-      %nav#mynav.navbar.fixed-top.navbar-expand-sm.bg-dark.navbar-dark
-        %a.navbar-brand
-          %strong.title Mobilestore
-        %ul.navbar-nav
-          - if user_signed_in?
-            %li.nav-item
-              = link_to 'Dashboard', brands_path, class: "nav-link"
-            %li.nav-item
-              = link_to 'Product', products_path, class: "nav-link"
-            %li.nav-item
-              = link_to 'Add to cart', products_path, class: "nav-link"
-            %li.nav-item
-              = link_to 'Edit profile', edit_user_registration_path, class: "nav-link"
-            %li.nav-item
-              = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
-            .search_bar
-              = form_tag products_path, method: 'get',class: 'form-inline' do
-                = text_field_tag :search, params[:search], placeholder: 'Search', class: "search form-control  autocomplete"
-                = submit_tag "Search", class: 'btn btn-success'
-          - elsif seller_signed_in?
-            %li.nav-item
-              = link_to 'Add product', new_product_path, class: "nav-link"
-            %li.nav-item
-              = link_to 'Edit profile', edit_seller_registration_path, class: "nav-link"
-            %li.nav-item
-              = link_to "Logout", destroy_seller_session_path, method: :delete, class: "nav-link"
-          - else
-            %li.nav-item
-              = link_to "User Sign In", new_user_session_path, class: "nav-link"
-            %li.nav-item
-              = link_to "User Sign Up", new_user_registration_path, class: "nav-link"
-            %li.nav-item
-              = link_to "Seller Sign In", new_seller_session_path, class: "nav-link"
-            %li.nav-item
-              = link_to "Seller Sign Up", new_seller_registration_path, class: "nav-link"
-    %br/
-    = yield
+      %br/
+      = yield
     %hr
     .footer
       %footer copyright @ mobileshop 2018

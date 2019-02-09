@@ -1,10 +1,15 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_seller!, except: :index
   before_action :set_product, only: %i[show edit update destroy]
-
   # GET /products
   # GET /products.json
   def index
-    @products = Product.order(:description).page(params[:page]).per(2)
+    @products = Product.all.order(:description).page(params[:page]).per(2)
+    if (params[:price_min] && params[:price_max]).present?
+      @price_min = params[:price_min].to_i
+      @price_max = params[:price_max].to_i
+      @products = Product.joins(:product_variants).where('price >= ? AND price <= ?', @price_min, @price_max).order(:description).page(params[:page]).per(2)
+    end
     if params[:search].present?
       @products = Product.joins(:brand, :categories, :colors, :storages, :processors).where('brands.name LIKE ? OR categories.name LIKE  ? OR colors.name LIKE ? OR storages.name LIKE ? OR processors.name LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).per(2)
     end

@@ -9,6 +9,7 @@ gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'rails', '~> 5.2.1'
+gem 'jquery-ui-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

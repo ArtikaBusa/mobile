@@ -23,9 +23,7 @@
 .display{
   display:inline-block;
   text-align: center;
-  width: 400px;
-  margin-left: 80px;
-  margin-right: 80px;
+  min-width: 400px;
   padding: 15px;
 }
 #mybody{
@@ -50,4 +48,16 @@
     height: 200px;
     width: 200px;
     overflow: hidden;
+}
+hr{
+  width: 50%;
+  border-width: 2px;
+}
+h5{
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+  text-align: center;
+  font-family: sans-serif;
+  padding: 10px;
 }

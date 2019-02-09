@@ -10,8 +10,6 @@
               .field
                 .round-image-50
                   = image_tag(@seller.profile_photo, width: "200px", height: "200px")
-              = f.file_field :profile_photo, autofocus: true, autocomplete: "profile_photo",:class =>"form-control"
-              %br/                
               %br/
               .field
                 = f.label :name

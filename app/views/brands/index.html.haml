@@ -26,3 +26,22 @@
 = link_to image_tag( 'oneplus-logo.png'), products_path(:brand_id => "4"), class: "butt"
 = link_to image_tag( 'samsung.png'), products_path(:brand_id => "5"), class: "butt"
 = link_to image_tag( 'sony.png'), products_path(:brand_id => "6"), class: "butt"
+%br/
+%br/
+%hr/
+%h5 Latest Mobiles
+- if @products.empty?
+  %h2 no record found
+- else
+  - @products.each do |product|
+    .card.display
+      .card-img-top
+        - if product.mobile_photos.attached?
+          = image_tag(product.mobile_photos.first, width: "300px", height: "500px")
+      .card-body
+        %h4.card-title= product.description
+      = link_to 'Show', product, class: "btn btn-primary"
+  %br/
+  %br/
+  .pagination.justify-content-center
+    = paginate @products

@@ -39,7 +39,7 @@ ActiveAdmin.register ProductVariant do
       f.input :storage_id
       f.input :color_id
       f.input :display_id
-      f.input :processore_id
+      f.input :processor_id
       f.input :price
       f.input :width
       f.input :height

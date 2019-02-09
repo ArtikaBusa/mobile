@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :sellers
-  resources :sellers
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
@@ -12,10 +11,5 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
 
-
-  authenticated :seller do
-     root 'products#new', as: :authenticated_root
-   end
-
-   root to: 'brands#index'
+  root to: 'brands#index'
 end

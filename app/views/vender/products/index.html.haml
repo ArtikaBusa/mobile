@@ -1,0 +1,17 @@
+%br/
+.row
+  .container
+    - if @vender_products.empty?
+      = link_to 'Add product', new_vender_product_path, class: "nav-link"
+    - else
+      - @vender_products.each do |vender_product|
+        .card.display
+          = vender_product.product.description
+
+          %br/
+          = link_to 'Show', vender_product_path(vender_product)
+          = link_to 'Edit', edit_vender_product_path(vender_product)
+          = link_to 'Destroy', vender_product_path(vender_product), method: :delete, data: { confirm: 'Are you sure?' }
+
+    .pagination.justify-content-center
+      = paginate @vender_products

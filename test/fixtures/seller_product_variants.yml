@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  seller_id: 1
-  product_variant_id: 1
   price: 9.99
   discount: 9.99
   final_price: 9.99
+  seller_product: one
+  product_variant: one
 
 two:
-  seller_id: 1
-  product_variant_id: 1
   price: 9.99
   discount: 9.99
   final_price: 9.99
+  seller_product: two
+  product_variant: two

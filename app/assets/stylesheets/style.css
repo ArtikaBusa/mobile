@@ -5,16 +5,15 @@
   margin-left: 380px;
 }
 .row{
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .footer{
   text-align: center;
   color: black;
 }
 .butt {
-  margin: 60px;
-  height: 200px;
-  width: 200px;
+  margin: 45px;
+
   background-repeat:no-repeat;
 }
 .card {
@@ -60,4 +59,19 @@ h5{
   text-align: center;
   font-family: sans-serif;
   padding: 10px;
+}
+.add{
+  text-decoration: underline;
+}
+.remove{
+  color: red;
+  text-decoration: underline;
+  margin-left: 930px;
+}
+.nestedform{
+  padding: 15px
+}
+.sellervariant{
+  display: block;
+  margin: auto;
 }

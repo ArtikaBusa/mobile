@@ -14,8 +14,6 @@
       %ul.navbar-nav
         - if user_signed_in?
           %li.nav-item
-            = link_to 'Dashboard', brands_path, class: "nav-link"
-          %li.nav-item
             = link_to 'Product', products_path, class: "nav-link"
           %li.nav-item
             = link_to 'Add to cart', products_path, class: "nav-link"
@@ -29,9 +27,9 @@
               = submit_tag "Search", class: 'btn btn-success'
         - elsif seller_signed_in?
           %li.nav-item
-            = link_to 'Product', products_path, class: "nav-link"
+            = link_to 'Product', vender_products_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Add product', new_product_path, class: "nav-link"
+            = link_to 'Add product', new_vender_product_path, class: "nav-link"
           %li.nav-item
             = link_to 'Edit profile', edit_seller_registration_path, class: "nav-link"
           %li.nav-item

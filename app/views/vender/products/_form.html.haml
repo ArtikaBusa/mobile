@@ -1,0 +1,24 @@
+%br/
+%br/
+= form_for @vender_product, url: (%w[new create].include?(action_name) ? vender_products_path : vender_product_path) do |f|
+  - if f.object.new_record?
+    %h6 Product
+    = f.select :product_id, options_for_select(Product.all.collect{ |p| [p.description, p.id] }, f.object.product_id),
+      {prompt: "select product"},class: "form-control", onchange: "show_product_form(this);"
+  - else
+    %h5= @vender_product.product.description
+  %br/
+  - if @product_variant.present?
+    #seller_product_variants
+      = f.fields_for :seller_product_variants do |seller_product_variant|
+        = render 'seller_product_variant_fields', f: seller_product_variant
+      .links
+        = link_to_add_association 'Add Variant', f, :seller_product_variants, class: "btn btn-success"
+      %br/
+    = f.submit "Create", class: "btn btn-success"
+
+:javascript
+  function show_product_form(ele) {
+    console.log($(ele).val());
+    window.location.href = window.location.href.replace(/\?.+/, '') + '?product_id=' + $(ele).val();
+  }

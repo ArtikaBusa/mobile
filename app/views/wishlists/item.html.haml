@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-lg-6
+      .card
+        .display
+          %strong.text-center Photos
+          .column
+            - if @favorite.product.mobile_photos.attached?
+              - @favorite.product.mobile_photos.each do |mobile_photo|
+                - if mobile_photo.representable?
+                  = link_to image_tag(mobile_photo.representation(resize: '200x200')), mobile_photo
+        %h4.card-header= @favorite.product.description
+  = link_to "Back", product_path, class: "btn btn-success"

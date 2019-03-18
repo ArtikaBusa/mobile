@@ -1,0 +1,38 @@
+%br/
+- if @order.empty?
+  There is no record
+- else
+  .row
+    - @order.each do |orders|
+      .card.showproduct
+        .margin
+          .row
+            .col-sm-5
+              %strong Product Name:
+            .col-sm-5
+              = orders.seller_product_variant.seller_product.product.description
+          .row
+            .col-sm-5
+              %strong Seller Name:
+            .col-sm-5
+              = orders.seller.name
+          .row
+            .col-sm-5
+              %strong Price:
+            .col-sm-5
+              = orders.price
+          .row
+            .col-sm-5
+              %strong Discount:
+            .col-sm-5
+              = orders.discount
+          .row
+            .col-sm-5
+              %strong Final Price:
+            .col-sm-5
+              = orders.final_price
+        .card-footer
+          = link_to "show",show_order_path(orders), class: "btn btn-success"
+
+  %br/
+= link_to "Back", products_path, class: "btn btn-success"

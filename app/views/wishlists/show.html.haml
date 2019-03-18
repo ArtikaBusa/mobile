@@ -1,0 +1,18 @@
+%br/
+- if @favorites.empty?
+  there is no record
+- else
+
+  - @favorites.each do |favorite|
+    .row
+      .col-sm-9
+        - if favorite.product.mobile_photos.attached?
+          - favorite.product.mobile_photos.each do |mobile_photo|
+            - if mobile_photo.representable?
+              = link_to image_tag(mobile_photo.representation(resize: '200x200')), mobile_photo
+      .col-sm-3
+        %h4= favorite.product.description
+        %br/
+        = link_to "show", product_path(favorite.product), class: "btn btn-success"
+        %br/
+      %hr/

@@ -1,0 +1,132 @@
+- if @seller_product_variants.empty?
+  %h3 There is no record
+- else
+.row
+  %col-sm-5
+    .card.showproduct
+      .display
+        - @products.each do |product|
+          .card-img-top
+            - if product.mobile_photos.attached?
+              = image_tag(product.mobile_photos.first, width: "100px", height: "200px")
+          .card-body
+            %h4.card-header= product.description
+        - @seller_product_variants.each do |seller_product_variant|
+          .row
+            .col-4
+              %strong seller :
+            .col-5
+              = seller_product_variant.seller_product.seller.name
+          .row
+            .col-4
+              %strong.text-success Price:
+            .col-5
+              = seller_product_variant.price
+          .row
+            .col-4
+              %strong.text-success Discount:
+            .col-5
+              = seller_product_variant.discount
+          .row
+            .col-4
+              %strong.text-success Final Price:
+            .col-5
+              = seller_product_variant.final_price
+          .row
+            .col-4
+              %strong.text-success Storage :
+            .col-5
+              = seller_product_variant.product_variant.storage.name
+          .row
+            .col-4
+              %strong.text-success Color :
+            .col-5
+              = seller_product_variant.product_variant.color.name
+          .row
+            .col-4
+              %strong.text-success Processor :
+            .col-5
+              = seller_product_variant.product_variant.processor.name
+          .row
+            .col-4
+              %strong.text-success Display :
+            .col-5
+              = seller_product_variant.product_variant.display.name
+          .row
+            .col-4
+              %strong.text-success Weight
+            .col-5
+              = seller_product_variant.product_variant.weight
+          .row
+            .col-4
+              %strong.text-success Height :
+            .col-5
+              = seller_product_variant.product_variant.height
+          .row
+            .col-4
+              %strong.text-success Width :
+            .col-5
+              = seller_product_variant.product_variant.width
+          .row
+            .col-4
+              %strong.text-success Thickness :
+            .col-5
+              = seller_product_variant.product_variant.thickness
+          .row
+            .col-4
+              %strong.text-success Front Camera :
+            .col-5
+              = seller_product_variant.product_variant.front_camera
+          .row
+            .col-4
+              %strong.text-success Rear Camera :
+            .col-5
+              = seller_product_variant.product_variant.rear_camera
+
+
+  %col-sm-7
+    .card.showproduct
+      .card-header
+        %h4 Select Payment Method
+      .card-body
+        = form_for @order, method: 'post', url: orders_path do |f|
+          address
+          = f.text_field :address, class: "form-control"
+          %br/
+          city
+          = f.text_field :city, class: "form-control"
+          %br/
+          state
+          = f.text_field :state, class: "form-control"
+          %br/
+          pincode
+          = f.text_field :pincode, class: "form-control"
+          = f.hidden_field :seller_product_variant_id
+          = f.hidden_field :seller_id
+          = f.hidden_field :product_variant_id
+          = f.hidden_field :price
+          = f.hidden_field :discount
+          = f.hidden_field :final_price
+          %br/
+          .field
+            = f.radio_button :payment_type, "cash_on_delivery"
+            = f.label :cash_on_delivery, "Cash-On-Delivery"
+            %br/
+            = f.radio_button :payment_type, "net_banking"
+            = f.label :net_banking, "Net-Banking"
+            .showhide
+              = f.text_field :payment_transaction, class: "form-control"
+          %br/
+          = f.submit "payment", class: 'btn btn-success'
+= link_to "Back", orders_path, class: 'btn btn-success'
+:javascript
+  $(function() {
+    $('input[name="order[payment_type]"]').on('click', function() {
+        if ($(this).val() == 'net_banking') {
+            $('.showhide').show();
+        }
+        else {
+            $('.showhide').hide();
+        }
+    });
+  });

@@ -1,0 +1,68 @@
+%br/
+.row
+
+  .card.showproduct
+    .margin
+      .row
+        .col-sm-5
+          %strong Product Name:
+        .col-sm-5
+          = @orders.seller_product_variant.seller_product.product.description
+      .row
+        .col-sm-5
+          %strong Seller Name:
+        .col-sm-5
+          = @orders.seller.name
+      .row
+        .col-sm-5
+          %strong Price:
+        .col-sm-5
+          = @orders.price
+      .row
+        .col-sm-5
+          %strong Discount:
+        .col-sm-5
+          = @orders.discount
+      .row
+        .col-sm-5
+          %strong Final Price:
+        .col-sm-5
+          = @orders.final_price
+      .row
+        .col-sm-5
+          %strong Address:
+        .col-sm-7
+          = @orders.address
+      .row
+        .col-sm-5
+          %strong City:
+        .col-sm-5
+          = @orders.city
+      .row
+        .col-sm-5
+          %strong State:
+        .col-sm-5
+          = @orders.state
+      .row
+        .col-sm-5
+          %strong Pincode:
+        .col-sm-5
+          = @orders.pincode
+      .row
+        .col-sm-5
+          %strong Order Date:
+        .col-sm-7
+          = @orders.ordered_date
+      .row
+        .col-sm-5
+          %strong Payment Type:
+        .col-sm-5
+          = @orders.payment_type
+      .row
+        .col-sm-5
+          %strong Payment Number:
+        .col-sm-5
+          = @orders.payment_transaction
+
+%br/
+= link_to "Back", order_path, class: "btn btn-success"

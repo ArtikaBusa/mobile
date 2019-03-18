@@ -1,8 +1,8 @@
 .title{
   color: white;
 }
-.search_bar {
-  margin-left: 380px;
+.form-horizontal {
+  margin-left: 450px;
 }
 .row{
   margin-top: 20px;
@@ -26,6 +26,7 @@
   padding: 15px;
 }
 #mybody{
+  margin-top: 50px;
   background-image: url("android.jpg");
   height: 100%;
   background-position: center;
@@ -74,4 +75,16 @@ h5{
 .sellervariant{
   display: block;
   margin: auto;
+}
+.showhide{
+  display: none;
+}
+.showproduct{
+  width: 500px;
+}
+.margin{
+  margin: 20px;
+}
+.input-group-btn{
+  margin-left: 10px;
 }

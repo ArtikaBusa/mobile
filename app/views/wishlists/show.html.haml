@@ -14,5 +14,6 @@
         %h4= favorite.product.description
         %br/
         = link_to "show", product_path(favorite.product), class: "btn btn-success"
+        = link_to "Remove", destroy_favorite_path(favorite), method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-success"
         %br/
       %hr/

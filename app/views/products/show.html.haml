@@ -76,5 +76,9 @@
                         = link_to "Buy Now", orders_path(:seller_product_variant_id => seller_product_variant), class: "btn btn-success"
 
         .card-footer
-          = link_to "Add to wishlist", product_favorite_path, method: "post",class: "btn btn-success"
+          - if @wishlist.present?
+            Already in list
+          - else
+            = link_to "Add to wishlist", product_favorite_path, method: "post",class: "btn btn-success"
+
           = link_to 'Back', products_path, class: "btn btn-success"

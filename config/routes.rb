@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   end
   get '/orders', to: 'orders#order', as: 'order'
   get '/orders/:id', to: 'orders#show', as: 'show_order'
+  delete '/orders/:id', to: 'orders#destroy', as: 'destroy_order'
 
   post '/products/:id/favorite', to: 'wishlists#index', as: 'product_favorite'
-  get '/products/:id/favorite/item', to: 'wishlists#item', as: 'favorite_item'
   get '/favorite', to: 'wishlists#show', as: 'show_favorite'
-
+  delete '/favorite/:id', to: 'wishlists#destroy', as: 'destroy_favorite'
 
   get '/products/:id/:seller_product_variant_id/orders', to: 'orders#index', as: 'orders'
   get '/products/:id/:seller_product_variant_id/orders/payment', to: 'orders#payment', as: 'order_payment'

@@ -16,11 +16,11 @@
           %li.nav-item
             = link_to 'Product', products_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Order', order_path, class: "nav-link"
+            = link_to 'My Order', order_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Favorite', show_favorite_path, class: "nav-link"
+            = link_to 'My Favorite', show_favorite_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Edit profile', edit_user_registration_path, class: "nav-link"
+            = link_to 'Profile', edit_user_registration_path, class: "nav-link"
           %li.nav-item
             = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
           .form-horizontal
@@ -36,7 +36,7 @@
           %li.nav-item
             = link_to 'Order', vender_order_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Edit profile', edit_seller_registration_path, class: "nav-link"
+            = link_to 'Profile', edit_seller_registration_path, class: "nav-link"
           %li.nav-item
             = link_to "Logout", destroy_seller_session_path, method: :delete, class: "nav-link"
         - else

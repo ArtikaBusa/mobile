@@ -5,7 +5,7 @@ class WishlistsController < InheritedResources::Base
     @favorite = current_user.wishlists.new(product_id: params[:id])
 
     if @favorite.save
-      redirect_to favorite_item_path
+      redirect_to product_path
     else
       puts '----------------'
       @favorite.errors.full_messages
@@ -13,15 +13,13 @@ class WishlistsController < InheritedResources::Base
       redirect_to product_path
     end
   end
-  def item
-    @favorite = Wishlist.find_by(product_id: params[:id])
-    puts "---------------"
-    puts @favorite.to_json
-  end
 
   def show
     @favorites = current_user.wishlists.all
-
   end
-
+  def destroy
+    @favorite = Wishlist.find(params[:id])
+    @favorite.destroy
+    redirect_to show_favorite_path
+  end
 end

@@ -19,9 +19,7 @@ class OrdersController < ApplicationController
   end
   def show
     @orders = Order.find_by(id: params[:id])
-    puts "-------"
-    puts @orders.id
-    puts "----------"
+
   end
   def create
     @order = current_user.orders.new(order_params)
@@ -32,6 +30,7 @@ class OrdersController < ApplicationController
     else
       render action: 'payment'
     end
+
   end
 
   def confirmation
@@ -41,9 +40,9 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    @order = Order.find_by(id: params[:id])
     @order.destroy
-
-    redirect_to orders_url
+    redirect_to order_path
   end
 
   private

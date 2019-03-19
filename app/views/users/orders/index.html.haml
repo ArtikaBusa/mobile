@@ -32,8 +32,8 @@
             .col-sm-5
               = orders.final_price
         .card-footer
-          = link_to "Show",show_order_path(orders), class: "btn btn-success"
-          = link_to "Remove",destroy_order_path(orders), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-success"
+          = link_to "Show",users_order_path(orders), class: "btn btn-success"
+          = link_to "Remove",users_order_path(orders), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-success"
 
   %br/
 = link_to "Back", products_path, class: "btn btn-success"

@@ -1,8 +1,13 @@
-class OrdersController < ApplicationController
+class OrderController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @products = Product.where(id: params[:id])
     @seller_product_variants = SellerProductVariant.where(id: params[:seller_product_variant_id])
+
+    puts '-------'
+    puts @seller_product_variants.to_json
+    puts '--------'
   end
 
   def payment
@@ -14,13 +19,6 @@ class OrdersController < ApplicationController
     @order = current_user.orders.new(seller_id: @seller.seller_product.seller_id, product_variant_id: @product_variant.ids, price: @seller.price, discount: @seller.discount, final_price: @seller.final_price, seller_product_variant_id: params[:seller_product_variant_id])
   end
 
-  def order
-    @order = current_user.orders.all
-  end
-  def show
-    @orders = Order.find_by(id: params[:id])
-
-  end
   def create
     @order = current_user.orders.new(order_params)
     @order.ordered_date = Time.now
@@ -30,19 +28,12 @@ class OrdersController < ApplicationController
     else
       render action: 'payment'
     end
-
   end
 
   def confirmation
     @products = Product.where(id: params[:id])
     @seller_product_variants = SellerProductVariant.where(id: params[:seller_product_variant_id])
     @product_variant = ProductVariant.joins(:seller_product_variants).where(seller_product_variants: { id: params[:seller_product_variant_id] })
-  end
-
-  def destroy
-    @order = Order.find_by(id: params[:id])
-    @order.destroy
-    redirect_to order_path
   end
 
   private

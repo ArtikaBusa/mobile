@@ -5,19 +5,11 @@
     .form-group.row
       .col-sm-3
         .form-check-label Price
-        = f.number_field :price, onblur: "calculate_discount(this);", class: "form-control"
+        = f.number_field :price, class: "form-control"
       .col-sm-3
         .form-check-label Discount
-        = f.number_field :discount, onblur: "calculate_discount(this);", class: "form-control"
+        = f.number_field :discount, class: "form-control"
       .col-sm-3
         .form-check-label Final Price
-        = f.text_field :final_price, onblur: "calculate_discount(this);", class: "form-control"
+        = f.text_field :final_price, class: "form-control"
     = link_to_remove_association "Remove Variant", f, class: "remove"
-
-:javascript
-  function calculate_discount(id){
-
-    var number = attr('id').split('_')[1];
-
-    console.log(number);
-  }

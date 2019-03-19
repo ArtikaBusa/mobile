@@ -100,12 +100,9 @@
         .card.display
           .card-img-top
             - if product.mobile_photos.attached?
-              = image_tag(product.mobile_photos.first, width: "300px", height: "500px")
+              = image_tag(product.mobile_photos.first, width: "100px", height: "200px")
           .card-body
             %h4.card-title= product.description
-            %strong.text-success Price ₹
-            - product.product_variants.each do |product_variant|
-              = product_variant.price
           = link_to 'Show', product, class: "btn btn-primary"
       %br/
       %br/

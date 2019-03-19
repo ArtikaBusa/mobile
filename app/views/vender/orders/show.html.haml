@@ -1,68 +1,67 @@
 %br/
-.row
 
+.row
   .card.showproduct
     .margin
       .row
         .col-sm-5
           %strong Product Name:
         .col-sm-5
-          = @orders.seller_product_variant.seller_product.product.description
-      .row
-        .col-sm-5
-          %strong Seller Name:
-        .col-sm-5
-          = @orders.seller.name
+          = @order.seller_product_variant.seller_product.product.description
       .row
         .col-sm-5
           %strong Price:
         .col-sm-5
-          = @orders.price
+          = @order.price
       .row
         .col-sm-5
           %strong Discount:
         .col-sm-5
-          = @orders.discount
+          = @order.discount
       .row
         .col-sm-5
           %strong Final Price:
         .col-sm-5
-          = @orders.final_price
+          = @order.final_price
+      .row
+        .col-sm-5
+          %strong User name:
+        .col-sm-7
+          = @order.user.name
       .row
         .col-sm-5
           %strong Address:
         .col-sm-7
-          = @orders.address
+          = @order.address
       .row
         .col-sm-5
           %strong City:
         .col-sm-5
-          = @orders.city
+          = @order.city
       .row
         .col-sm-5
           %strong State:
         .col-sm-5
-          = @orders.state
+          = @order.state
       .row
         .col-sm-5
           %strong Pincode:
         .col-sm-5
-          = @orders.pincode
+          = @order.pincode
       .row
         .col-sm-5
           %strong Order Date:
         .col-sm-7
-          = @orders.ordered_date
+          = @order.ordered_date
       .row
         .col-sm-5
           %strong Payment Type:
         .col-sm-5
-          = @orders.payment_type
+          = @order.payment_type
       .row
         .col-sm-5
           %strong Payment Number:
         .col-sm-5
-          = @orders.payment_transaction
+          = @order.payment_transaction
 
-%br/
-= link_to "Back", order_path, class: "btn btn-success"
+= link_to "back", vender_order_path, class: "btn btn-success"

@@ -89,7 +89,7 @@
       .card-header
         %h4 Select Payment Method
       .card-body
-        = form_for @order, method: 'post', url: orders_path do |f|
+        = form_for @order, method: 'post', url: order_path do |f|
           address
           = f.text_field :address, class: "form-control"
           %br/
@@ -118,7 +118,7 @@
               = f.text_field :payment_transaction, class: "form-control"
           %br/
           = f.submit "payment", class: 'btn btn-success'
-= link_to "Back", orders_path, class: 'btn btn-success'
+= link_to "Back", order_path, class: 'btn btn-success'
 :javascript
   $(function() {
     $('input[name="order[payment_type]"]').on('click', function() {

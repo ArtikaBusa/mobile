@@ -1,0 +1,15 @@
+%br/
+- if @order.empty?
+  there is no record
+- else
+  .row
+    - @order.each do |order|
+      .card.showproduct
+        .margin
+          .row
+            .col-sm-5
+              %strong Product Name:
+            .col-sm-5
+              = order.seller_product_variant.seller_product.product.description
+        .card-footer
+          = link_to "show", vender_order_path(order), class: "btn btn-success"

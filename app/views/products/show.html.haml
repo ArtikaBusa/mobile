@@ -73,7 +73,7 @@
                       .col-3
                         = seller_product_variant.seller_product.seller.name
                       .col-8
-                        = link_to "Buy Now", orders_path(:seller_product_variant_id => seller_product_variant), class: "btn btn-success"
+                        = link_to "Buy Now", order_path(:seller_product_variant_id => seller_product_variant), class: "btn btn-success"
 
         .card-footer
           - if @wishlist.present?

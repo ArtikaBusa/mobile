@@ -1,39 +1,42 @@
 %br/
 - if @order.empty?
-  There is no record
+  .text-center
+    .card
+      %h5 No orders yet!
 - else
-  .row
-    - @order.each do |orders|
+  .container
+    .row
       .card.showproduct
-        .margin
-          .row
-            .col-sm-5
-              %strong Product Name:
-            .col-sm-5
-              = orders.seller_product_variant.seller_product.product.description
-          .row
-            .col-sm-5
-              %strong Seller Name:
-            .col-sm-5
-              = orders.seller.name
-          .row
-            .col-sm-5
-              %strong Price:
-            .col-sm-5
-              = orders.price
-          .row
-            .col-sm-5
-              %strong Discount:
-            .col-sm-5
-              = orders.discount
-          .row
-            .col-sm-5
-              %strong Final Price:
-            .col-sm-5
-              = orders.final_price
-        .card-footer
-          = link_to "Show",users_order_path(orders), class: "btn btn-success"
-          = link_to "Remove",users_order_path(orders), method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-success"
-
-  %br/
-= link_to "Back", products_path, class: "btn btn-success"
+        .card-header
+          My Order
+        .card-body
+          - @order.each do |orders|
+            .row
+              .col-3
+                = image_tag(orders.product_variant.product.mobile_photos.first, width: "100px", height: "150px")
+              .col-7
+                = orders.product_variant.product.description
+                %br/
+                = orders.product_variant.product.brand.name
+                %br/
+                %strong Seller :
+                = orders.seller.name
+                .form-group.row
+                  .col-2
+                    %strong.text-success Price
+                    = orders.price
+                  .col-2
+                    %strong.text-success Discount
+                    = orders.discount
+                    '%
+                  .col-3
+                    %strong.text-success Final Price
+                    = orders.final_price
+              .col-2
+                .icon-size
+                  = link_to fa_icon("eye"),users_order_path(orders)
+                  = link_to fa_icon("trash"),users_order_path(orders), method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-delete"
+              %hr/
+    %br/
+    %br/
+    = link_to "Back", products_path, class: "btn btn-success"

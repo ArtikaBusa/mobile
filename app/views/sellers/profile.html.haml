@@ -1,0 +1,29 @@
+#mybody
+  .container
+    .row
+      .col-sm-5.mx-auto
+        .card.card-light
+          .card-header
+            Profile
+          .card-body
+            .round-image-50
+              - if @seller.profile_photo.attached?
+                = image_tag(@seller.profile_photo, width: "200px", height: "200px")
+            %br/
+            .row
+              .col-4
+                %strong.text-success Name:
+              .col-6
+                = @seller.name
+            .row
+              .col-4
+                %strong.text-success Email:
+              .col-6
+                = @seller.email
+            .row
+              .col-4
+                %strong.text-success Contact no:
+              .col-6
+                = @seller.contact_no
+          .container.text-center
+            = link_to 'Edit Profile', edit_seller_registration_path, class: "btn btn-success"

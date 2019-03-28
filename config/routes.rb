@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :sellers
-
   devise_for :users
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
   namespace :users do
     resources :orders, only: %i[index show destroy]
   end
+  
+  get '/sellers/profile', to: 'sellers#profile', as: 'seller_profile'
+  get '/users/profile',   to: 'users#profile',   as: 'user_profile'
 
   post '/products/:id/favorite', to: 'wishlists#index', as: 'product_favorite'
   get '/favorite', to: 'wishlists#show', as: 'show_favorite'

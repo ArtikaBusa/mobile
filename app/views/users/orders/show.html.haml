@@ -1,68 +1,91 @@
-%br/
 .row
+  .col-sm-5
+    .card
+      .row
+        .col-sm-4
+          .product
+            - if @orders.product_variant.product.mobile_photos.attached?
+              - @orders.product_variant.product.mobile_photos.each do |mobile_photo|
+                .col-2
+                  = image_tag(mobile_photo, size: "80", onclick: "set_image(this);",class:"list-group-item")
+        .col-sm-6
+          .container
+            = image_tag(@orders.product_variant.product.mobile_photos.first, style: "width:100%", class: "hide")
+            %img{ id: "expandedImg" ,style: "width:100%"}
+    .container
+      = link_to 'Back', users_orders_path, class: "btn btn-success"
+  .col-sm-7
+    %h4= @orders.product_variant.product.description
+    %h4= @orders.product_variant.product.brand.name
+    - @orders.product_variant.product.product_categories.each do |category|
+      = category.category.name
 
-  .card.showproduct
-    .margin
-      .row
-        .col-sm-5
-          %strong Product Name:
-        .col-sm-5
-          = @orders.seller_product_variant.seller_product.product.description
-      .row
-        .col-sm-5
-          %strong Seller Name:
-        .col-sm-5
-          = @orders.seller.name
-      .row
-        .col-sm-5
-          %strong Price:
-        .col-sm-5
-          = @orders.price
-      .row
-        .col-sm-5
-          %strong Discount:
-        .col-sm-5
-          = @orders.discount
-      .row
-        .col-sm-5
-          %strong Final Price:
-        .col-sm-5
-          = @orders.final_price
-      .row
-        .col-sm-5
-          %strong Address:
-        .col-sm-7
-          = @orders.address
-      .row
-        .col-sm-5
-          %strong City:
-        .col-sm-5
-          = @orders.city
-      .row
-        .col-sm-5
-          %strong State:
-        .col-sm-5
-          = @orders.state
-      .row
-        .col-sm-5
-          %strong Pincode:
-        .col-sm-5
-          = @orders.pincode
-      .row
-        .col-sm-5
-          %strong Order Date:
-        .col-sm-7
-          = @orders.ordered_date
-      .row
-        .col-sm-5
-          %strong Payment Type:
-        .col-sm-5
-          = @orders.payment_type
-      .row
-        .col-sm-5
-          %strong Payment Number:
-        .col-sm-5
-          = @orders.payment_transaction
+    .card.showproduct
+      .card-header
+        Variant Details
+      .card-body
+        = @orders.product_variant.storage.name
+        ,
+        = @orders.product_variant.color.name
+        ,
+        = @orders.product_variant.processor.name
+        ,
+        = @orders.product_variant.display.name
+        ,
+        = @orders.product_variant.weight
+        gram ,
+        = @orders.product_variant.height
+        cm ,
+        = @orders.product_variant.width
+        cm ,
+        = @orders.product_variant.thickness
+        mm ,
+        = @orders.product_variant.front_camera
+        MP ,
+        = @orders.product_variant.rear_camera
+        MP
+        %br/
 
-%br/
-= link_to "Back", users_orders_path, class: "btn btn-success"
+        .row
+          .col-2
+            Seller :
+          .col-3
+            = @orders.seller.name
+          .col-0
+            .text-success ₹
+          .col-2
+            = @orders.price
+          .col-2
+            = @orders.discount
+            '%
+          .col-0
+            .text-success ₹
+          .col-2
+            = @orders.final_price
+
+    .card.showproduct
+      .card-header
+        User Details
+      .card-body
+        = @orders.address
+        = @orders.city
+        = @orders.state
+        = @orders.pincode
+        %br/
+        = @time
+        %br/
+        = @orders.payment_type
+        %br/
+        = @orders.payment_transaction
+
+
+
+:javascript
+  function set_image(imgs){
+    $(".hide").hide();
+    var expandImg = document.getElementById("expandedImg");
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "block";
+  }

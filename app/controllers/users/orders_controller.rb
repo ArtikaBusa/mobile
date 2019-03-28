@@ -8,6 +8,7 @@ module Users
 
     def show
       @orders = Order.find_by(id: params[:id])
+      @time = Time.at(@orders.ordered_date).strftime("%B %e, %Y at %I:%M %p")
     end
 
     def destroy

@@ -1,6 +1,5 @@
 class Product < ApplicationRecord
   belongs_to :brand
-  belongs_to :cart
   has_many :product_variants
   has_many :colors, through: :product_variants
   has_many :displays, through: :product_variants

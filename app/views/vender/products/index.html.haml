@@ -1,17 +1,36 @@
-%br/
 .row
   .container
     - if @vender_products.empty?
-      = link_to 'Add product', new_vender_product_path, class: "nav-link"
+      .text-center
+        .card.card-light
+          %h5 No products yet ! Would you like to add product?
+          .container
+            = link_to 'Add product', new_vender_product_path, class: "btn btn-success"
     - else
-      - @vender_products.each do |vender_product|
-        .card.display
-          = vender_product.product.description
+      .container
+        .row
+          .card.sellerproduct
+            .card-header
+              My Product
+            .card-body
+              - @vender_products.each do |vender_product|
+                .row
+                  .col-3
+                    = image_tag(vender_product.product.mobile_photos.first, width: "100px", height: "150px")
+                  .col-7
+                    = vender_product.product.description
+                    %br/
+                    = vender_product.product.brand.name
+                    %br/
+                    - vender_product.product.product_categories.each do |product_category|
+                      = product_category.category.name
+                  .col-2
+                    .icon-size
+                      = link_to fa_icon("eye 10px"), vender_product_path(vender_product)
+                      = link_to fa_icon("pencil-square-o 10px"), edit_vender_product_path(vender_product)
+                      = link_to fa_icon("trash 10px red"), vender_product_path(vender_product), method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-delete"
+                  %hr/
 
-          %br/
-          = link_to 'Show', vender_product_path(vender_product)
-          = link_to 'Edit', edit_vender_product_path(vender_product)
-          = link_to 'Destroy', vender_product_path(vender_product), method: :delete, data: { confirm: 'Are you sure?' }
 
     .pagination.justify-content-center
       = paginate @vender_products

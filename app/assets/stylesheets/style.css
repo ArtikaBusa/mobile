@@ -1,37 +1,58 @@
 .title{
   color: white;
 }
-.form-horizontal {
-  margin-left: 410px;
-}
 .row{
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .footer{
   text-align: center;
   color: black;
 }
 .butt {
-  margin: 45px;
+  margin: 60px;
 
   background-repeat:no-repeat;
 }
 .card {
   margin: 10px;
 }
-.display{
+.icon-size{
+  font-size: 20px;
+}
+.column{
   display:inline-block;
   text-align: center;
-  min-width: 400px;
-  padding: 15px;
+  width: 20%;
+  padding: 15px
 }
 #mybody{
-  margin-top: 50px;
+  margin-top: 20px;
   background-image: url("android.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.card-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.card-img-wrap:after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.3);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.card-img-wrap img {
+  transition: transform .25s;
+}
+.card-img-wrap:hover img {
+  transform: scale(1.2);
+}
+.card-img-wrap:hover:after {
+  opacity: 1;
 }
 .pagination a, .pagination span.current, .pagination span.gap {
     float: left;
@@ -67,7 +88,7 @@ h5{
 .remove{
   color: red;
   text-decoration: underline;
-  margin-left: 930px;
+  margin-left: 98%;
 }
 .nestedform{
   padding: 15px
@@ -80,11 +101,53 @@ h5{
   display: none;
 }
 .showproduct{
-  width: 500px;
+  width: 90%;
+}
+.sellerproduct{
+  width: 100%
 }
 .margin{
   margin: 20px;
 }
 .input-group-btn{
   margin-left: 10px;
+}
+.signin {
+  margin-left: 600px;
+  padding: 5px;
+  font-size: 18px;
+}
+.signup {
+
+  padding: 5px;
+  font-size: 18px;
+}
+.searchbar{
+  padding: 10px;
+}
+
+.form-horizontal{
+  margin-left: 400px;
+}
+.product{
+  float: left;
+
+}
+.product img {
+  opacity: 0.8;
+  cursor: pointer;
+
+}
+.product img:hover {
+  opacity: 1;
+  color: green;
+}
+.modal-backdrop {
+    display: none;
+}
+.card-light{
+  padding: 10px;
+}
+.icon-delete{
+  color: red;
 }

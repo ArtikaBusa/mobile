@@ -1,87 +1,110 @@
-- if @seller_product_variants.empty?
-  %h3 There is no record
-- else
+%h5.text-center Thank You. Your order is confirm
 .row
-  %h5.text-center Your order is confirm
-  %br/
-  %col-sm-8
+  .col-sm-5
+    .card
+      .row
+        .col-sm-4
+          .product
+            - if @order.product_variant.product.mobile_photos.attached?
+              - @order.product_variant.product.mobile_photos.each do |mobile_photo|
+                .col-2
+                  = image_tag(mobile_photo, size: "80", onclick: "set_image(this);",class:"list-group-item")
+        .col-sm-6
+          .container
+            = image_tag(@order.product_variant.product.mobile_photos.first, style: "width:100%", class: "hide")
+            %img{ id: "expandedImg" ,style: "width:100%"}
+  .col-sm-7
+    %h4= @order.product_variant.product.description
+    %h4= @order.product_variant.product.brand.name
+    - @order.product_variant.product.product_categories.each do |category|
+      = category.category.name
+
     .card.showproduct
-      .display
-        - @products.each do |product|
-          .card-img-top
-            - if product.mobile_photos.attached?
-              = image_tag(product.mobile_photos.first, width: "100px", height: "200px")
-          .card-body
-            %h4.card-header= product.description
-        - @seller_product_variants.each do |seller_product_variant|
-          .row
-            .col-4
-              %strong seller :
-            .col-5
-              = seller_product_variant.seller_product.seller.name
-          .row
-            .col-4
-              %strong.text-success Price:
-            .col-5
-              = seller_product_variant.price
-          .row
-            .col-4
-              %strong.text-success Discount:
-            .col-5
-              = seller_product_variant.discount
-          .row
-            .col-4
-              %strong.text-success Final Price:
-            .col-5
-              = seller_product_variant.final_price
-          .row
-            .col-4
-              %strong.text-success Storage :
-            .col-5
-              = seller_product_variant.product_variant.storage.name
-          .row
-            .col-4
-              %strong.text-success Color :
-            .col-5
-              = seller_product_variant.product_variant.color.name
-          .row
-            .col-4
-              %strong.text-success Processor :
-            .col-5
-              = seller_product_variant.product_variant.processor.name
-          .row
-            .col-4
-              %strong.text-success Display :
-            .col-5
-              = seller_product_variant.product_variant.display.name
-          .row
-            .col-4
-              %strong.text-success Weight
-            .col-5
-              = seller_product_variant.product_variant.weight
-          .row
-            .col-4
-              %strong.text-success Height :
-            .col-5
-              = seller_product_variant.product_variant.height
-          .row
-            .col-4
-              %strong.text-success Width :
-            .col-5
-              = seller_product_variant.product_variant.width
-          .row
-            .col-4
-              %strong.text-success Thickness :
-            .col-5
-              = seller_product_variant.product_variant.thickness
-          .row
-            .col-4
-              %strong.text-success Front Camera :
-            .col-5
-              = seller_product_variant.product_variant.front_camera
-          .row
-            .col-4
-              %strong.text-success Rear Camera :
-            .col-5
-              = seller_product_variant.product_variant.rear_camera
-    = link_to "Back", product_path, class: "btn btn-success"
+      .card-header
+        Variant Details
+      .card-body
+        = @order.product_variant.storage.name
+        ,
+        = @order.product_variant.color.name
+        ,
+        = @order.product_variant.processor.name
+        ,
+        = @order.product_variant.display.name
+        ,
+        = @order.product_variant.weight
+        gram ,
+        = @order.product_variant.height
+        cm ,
+        = @order.product_variant.width
+        cm ,
+        = @order.product_variant.thickness
+        mm ,
+        = @order.product_variant.front_camera
+        MP ,
+        = @order.product_variant.rear_camera
+        MP
+        %br/
+
+        .row
+          .col-2
+            Seller :
+          .col-3
+            = @order.seller.name
+          .col-0
+            .text-success ₹
+          .col-2
+            = @order.price
+          .col-2
+            = @order.discount
+            '%
+          .col-0
+            .text-success ₹
+          .col-2
+            = @order.final_price
+
+.container
+  .card-deck
+    .card
+      .card-header
+        User Details
+      .card-body
+        = current_user.name
+        %br/
+        = current_user.email
+        %br/
+        = current_user.contact_no
+    .card
+      .card-header
+        Shipping Details
+      .card-body
+        = @order.address
+        = @order.city
+        = @order.state
+        = @order.pincode
+
+    .card
+      .card-header
+        Payment Details
+      .card-body
+        = @order.payment_type
+        %br/
+        = @order.payment_transaction
+
+
+  %br/
+  %br/
+  = link_to "My Order", users_orders_path, class: "btn btn-success"
+
+  = link_to "My Favorite", show_favorite_path, class: "btn btn-success"
+
+  = link_to "Back", product_path, class: "btn btn-success"
+
+:javascript
+  function set_image(imgs){
+    $(".hide").hide();
+    var expandImg = document.getElementById("expandedImg");
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "block";
+  }

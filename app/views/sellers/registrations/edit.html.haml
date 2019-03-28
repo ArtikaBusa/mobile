@@ -10,7 +10,8 @@
               = devise_error_messages!
               .field
                 .round-image-50
-                  = image_tag(@seller.profile_photo, width: "200px", height: "200px")
+                  - if @seller.profile_photo.attached?
+                    = image_tag(@seller.profile_photo, width: "200px", height: "200px")
               .field
                 = f.label :profile_photo
                 = f.file_field :profile_photo, autofocus: true, autocomplete: "profile_photo",:class =>"form-control"
@@ -48,10 +49,7 @@
                 %i (we need your current password to confirm your changes)
                 = f.password_field :current_password, autocomplete: "current_password", class: "form-control"
               %br/
-              .field
-                = f.label :profile_photo
-                = f.file_field :profile_photo, autofocus: true, autocomplete: "profile_photo",:class =>"form-control"
-              %br/
+
               .actions
                 = f.submit "Update" ,class: "btn btn-lg btn-success btn-block"
               %br/

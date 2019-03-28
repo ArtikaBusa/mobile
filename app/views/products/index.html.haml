@@ -1,5 +1,5 @@
 .row
-  %col-sm-2
+  .col-sm-2
     .card
       %article.card-group-item
         %header.card-header
@@ -81,7 +81,7 @@
               = check_box_tag("storage", storage.id, checked, { class: 'chk-storage', onclick: "set_storage();"  } )
               %span.form-check-label= storage.name
               %br
-  %col-sm-10
+  .col-sm-10
     %form{ action: products_path, id: 'search_form' }
       %input{ type: 'hidden', name: 'search',       value: params[:search] }
       %input{ type: 'hidden', name: 'brand_id',     value: params[:brand_id],     id: 'brand_id' }
@@ -96,14 +96,16 @@
     - if @products.empty?
       %h2 no record found
     - else
-      - @products.each do |product|
-        .card.display
-          .card-img-top
-            - if product.mobile_photos.attached?
-              = image_tag(product.mobile_photos.first, width: "100px", height: "200px")
-          .card-body
-            %h4.card-title= product.description
-          = link_to 'Show', product, class: "btn btn-primary"
+      .container
+        - @products.each do |product|
+          = link_to product do
+            .card.column
+              .card-img-wrap
+                - if product.mobile_photos.attached?
+                  = image_tag(product.mobile_photos.first, width: "50px", height: "100px")
+              .card-body
+                .card-title= product.description
+
       %br/
       %br/
       .pagination.justify-content-center

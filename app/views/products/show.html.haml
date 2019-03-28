@@ -1,84 +1,86 @@
-.container
-  .row
-    .col-lg-12
-      .card
-        .display
-          %strong.text-center Photos
-          .column
+.row
+  .col-sm-5
+    .card
+      .row
+        .col-sm-4
+          .product
             - if @product.mobile_photos.attached?
               - @product.mobile_photos.each do |mobile_photo|
-                - if mobile_photo.representable?
-                  = link_to image_tag(mobile_photo.representation(resize: '200x200')), mobile_photo
-        %h4.card-header= @product.description
-        .card-body
-          .row
-            - @product.product_variants.each do |product_variant|
-              .card.showproduct
-                .margin
-                  .row
-                    .col-4
-                      %strong.text-success Storage :
-                    .col-5
-                      = product_variant.storage.name
-                  .row
-                    .col-4
-                      %strong.text-success Color :
-                    .col-5
-                      = product_variant.color.name
-                  .row
-                    .col-4
-                      %strong.text-success Processor :
-                    .col-5
-                      = product_variant.processor.name
-                  .row
-                    .col-4
-                      %strong.text-success Display :
-                    .col-5
-                      = product_variant.display.name
-                  .row
-                    .col-4
-                      %strong.text-success Weight
-                    .col-5
-                      = product_variant.weight
-                  .row
-                    .col-4
-                      %strong.text-success Height :
-                    .col-5
-                      = product_variant.height
-                  .row
-                    .col-4
-                      %strong.text-success Width :
-                    .col-5
-                      = product_variant.width
-                  .row
-                    .col-4
-                      %strong.text-success Thickness :
-                    .col-5
-                      = product_variant.thickness
-                  .row
-                    .col-4
-                      %strong.text-success Front Camera :
-                    .col-5
-                      = product_variant.front_camera
-                  .row
-                    .col-4
-                      %strong.text-success Rear Camera :
-                    .col-5
-                      = product_variant.rear_camera
-                  %br/
-                  %h5 Seller List
-                  %br/
-                  - product_variant.seller_product_variants.each do |seller_product_variant|
-                    .row
-                      .col-3
-                        = seller_product_variant.seller_product.seller.name
-                      .col-8
-                        = link_to "Buy Now", order_path(:seller_product_variant_id => seller_product_variant), class: "btn btn-success"
-
-        .card-footer
+                .col-2
+                  = image_tag(mobile_photo, size: "80", onclick: "set_image(this);",class:"list-group-item")
+        .col-sm-6
+          .container
+            = image_tag(@product.mobile_photos.first, style: "width:100%", class: "hide")
+            %img{ id: "expandedImg" ,style: "width:100%"}
+            #imgtext
+        .col-sm-2
           - if @wishlist.present?
-            Already in list
-          - else
-            = link_to "Add to wishlist", product_favorite_path, method: "post",class: "btn btn-success"
 
-          = link_to 'Back', products_path, class: "btn btn-success"
+          - else
+            .icon-size
+              = link_to fa_icon("heart-o"), product_favorite_path, method: "post"
+    .container
+      = link_to 'Back', products_path, class: "btn btn-success"
+  .col-sm-7
+    %h4= @product.description
+    %h4= @product.brand.name
+    = @time
+    %br/
+    price :
+    = @price.min
+    to
+    = @price.max
+    %br/
+    - @product.product_categories.each do |category|
+      = category.category.name
+    .row
+      .card.showproduct
+        .card-header
+          Variant Details
+        .card-body
+          - @product.product_variants.each do |product_variant|
+            = product_variant.storage.name
+            ,
+            = product_variant.color.name
+            ,
+            = product_variant.processor.name
+            ,
+            = product_variant.display.name
+            ,
+            = product_variant.weight
+            gram ,
+            = product_variant.height
+            cm ,
+            = product_variant.width
+            cm ,
+            = product_variant.thickness
+            mm ,
+            = product_variant.front_camera
+            MP ,
+            = product_variant.rear_camera
+            MP
+            %br/
+            - product_variant.seller_product_variants.each do |seller_product_variant|
+              .row
+                .col-2
+                  Seller :
+                .col-3
+                  = seller_product_variant.seller_product.seller.name
+                .col-0
+                  .text-success ₹
+                .col-3
+                  = seller_product_variant.price
+                .col-3
+                  = link_to "Buy Now", order_path(:seller_product_variant_id => seller_product_variant), class: "btn btn-success"
+              %br/
+              %br/
+
+:javascript
+  function set_image(imgs){
+    $(".hide").hide();
+    var expandImg = document.getElementById("expandedImg");
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "block";
+  }

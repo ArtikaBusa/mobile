@@ -1,19 +1,30 @@
 %br/
 - if @favorites.empty?
-  there is no record
+  .text-center
+    .card
+      %h5 There is no record
 - else
-
-  - @favorites.each do |favorite|
+  .container
     .row
-      .col-sm-9
-        - if favorite.product.mobile_photos.attached?
-          - favorite.product.mobile_photos.each do |mobile_photo|
-            - if mobile_photo.representable?
-              = link_to image_tag(mobile_photo.representation(resize: '200x200')), mobile_photo
-      .col-sm-3
-        %h4= favorite.product.description
-        %br/
-        = link_to "show", product_path(favorite.product), class: "btn btn-success"
-        = link_to "Remove", destroy_favorite_path(favorite), method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-success"
-        %br/
-      %hr/
+      .card.showproduct
+        .card-header
+          My Wishlist
+        .card-body
+          - @favorites.each do |favorite|
+            .row
+              .col-3
+                = image_tag(favorite.product.mobile_photos.first, width: "100px", height: "150px")
+              .col-7
+                = favorite.product.description
+                %br/
+                = favorite.product.brand.name
+                %br/
+                - favorite.product.product_categories.each do |product_category|
+                  = product_category.category.name
+              .col-2
+                .icon-size
+                  = link_to fa_icon("eye"), product_path(favorite.product)
+                  |
+                  = link_to fa_icon("trash"), destroy_favorite_path(favorite), method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-delete"
+              %hr/
+    = link_to "Back", products_path, class: "btn btn-success"

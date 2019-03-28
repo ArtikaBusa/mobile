@@ -8,7 +8,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav#mynav.navbar.fixed-top.navbar-expand-sm.bg-dark.navbar-dark
+    %nav.navbar.fixed-top.navbar-expand-sm.bg-dark.navbar-dark
       %a.navbar-brand
         %strong.title Mobilestore
       %ul.navbar-nav
@@ -20,7 +20,7 @@
           %li.nav-item
             = link_to 'My Favorite', show_favorite_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Profile', edit_user_registration_path, class: "nav-link"
+            = link_to 'Profile', user_profile_path, class: "nav-link"
           %li.nav-item
             = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
           .form-horizontal
@@ -36,22 +36,47 @@
           %li.nav-item
             = link_to 'Order', vender_orders_path, class: "nav-link"
           %li.nav-item
-            = link_to 'Profile', edit_seller_registration_path, class: "nav-link"
+            = link_to 'Profile', seller_profile_path, class: "nav-link"
           %li.nav-item
             = link_to "Logout", destroy_seller_session_path, method: :delete, class: "nav-link"
         - else
           %li.nav-item
-            = link_to "User Sign In", new_user_session_path, class: "nav-link"
+            .searchbar
+              = form_tag products_path, method: 'get',class: 'form-inline' do
+                = text_field_tag :search, params[:search], placeholder: 'Search', class: "form-control"
+                %span.input-group-btn
+                  = submit_tag "Search", class: 'btn btn-success'
           %li.nav-item
-            = link_to "User Sign Up", new_user_registration_path, class: "nav-link"
+            .signin
+              = link_to "Sign In", "#sign-in", class: "nav-link", "data-toggle" => "modal"
+              %div{ id: "sign-in", class: "modal fade"}
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      .modal-title
+                        Sign In
+                    .modal-body
+                      = link_to "User Sign In", new_user_session_path, class: "btn btn-success"
+                      = link_to "Seller Sign In", new_seller_session_path, class: "btn btn-success"
+
           %li.nav-item
-            = link_to "Seller Sign In", new_seller_session_path, class: "nav-link"
-          %li.nav-item
-            = link_to "Seller Sign Up", new_seller_registration_path, class: "nav-link"
-    .container
-      %br/
-      %br/
-      = yield
+            .signup
+              = link_to "Sign Up", "#sign-up", class: "nav-link", "data-toggle" => "modal"
+              .modal#sign-up
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      .modal-title
+                        Sign up
+                    .modal-body
+                      = link_to "User Sign up", new_user_registration_path, class: "btn btn-success"
+                      = link_to "Seller Sign up", new_seller_registration_path, class: "btn btn-success"
+
+
+
+    %br/
+    %br/
+    = yield
     %hr
     .footer
       %footer copyright @ mobileshop 2018

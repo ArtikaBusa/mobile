@@ -1,31 +1,70 @@
-%br/
-.container
-  %h5= @vender_product.product.description
-  .row
-    - @vender_product.seller_product_variants.each do |seller_product_variant|
-      .sellervariant
-        .col-sm-12
-          %strong.text-success Color:
-          = seller_product_variant.product_variant.color.name
-        .col-sm-12
-          %strong.text-success Processor:
-          = seller_product_variant.product_variant.processor.name
-        .col-sm-12
-          %strong.text-success Storage:
-          = seller_product_variant.product_variant.storage.name
-        .col-sm-12
-          %strong.text-success Display:
-          = seller_product_variant.product_variant.display.name
-        .col-sm-12
-          %strong.text-success Price:
-          = seller_product_variant.price
-        .col-sm-12
-          %strong.text-success Discount:
-          = seller_product_variant.discount
-        .col-sm-12
-          %strong.text-success Final price:
-          = seller_product_variant.final_price
-  %br/
-  = link_to 'Edit', edit_vender_product_path
-  \|
-  = link_to 'Back', vender_products_path
+.row
+  .col-sm-5
+    .card
+      .row
+        .col-sm-4
+          .product
+            - if @vender_product.product.mobile_photos.attached?
+              - @vender_product.product.mobile_photos.each do |mobile_photo|
+                .col-2
+                  = image_tag(mobile_photo, size: "80", onclick: "set_image(this);",class:"list-group-item")
+        .col-sm-6
+          .container
+            = image_tag(@vender_product.product.mobile_photos.first, style: "width:100%", class: "hide")
+            %img{ id: "expandedImg" ,style: "width:100%"}
+            #imgtext
+    .container
+      = link_to 'Back', vender_products_path, class: "btn btn-success"
+  .col-sm-6
+    %h4= @vender_product.product.description
+    %h4= @vender_product.product.brand.name
+    - @vender_product.product.product_categories.each do |category|
+      = category.category.name
+    .row
+      .card.showproduct
+        .card-header
+          Variant Details
+        .card-body
+          - @vender_product.seller_product_variants.each do |seller_product_variant|
+            = seller_product_variant.product_variant.color.name
+            ,
+            = seller_product_variant.product_variant.processor.name
+            ,
+            = seller_product_variant.product_variant.storage.name
+            ,
+            = seller_product_variant.product_variant.display.name
+            ,
+            = seller_product_variant.product_variant.width
+            cm,
+            = seller_product_variant.product_variant.height
+            cm,
+            = seller_product_variant.product_variant.thickness
+            mm,
+            = seller_product_variant.product_variant.weight
+            gram,
+            = seller_product_variant.product_variant.rear_camera
+            MP,
+            = seller_product_variant.product_variant.front_camera
+            MP
+            %br/
+            .form-group.row
+              .col-2
+                %strong.text-success Price
+                = seller_product_variant.price
+              .col-2
+                %strong.text-success Discount
+                = seller_product_variant.discount
+                '%
+              .col-3
+                %strong.text-success Final Price
+                = seller_product_variant.final_price
+
+:javascript
+  function set_image(imgs){
+    $(".hide").hide();
+    var expandImg = document.getElementById("expandedImg");
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "block";
+  }

@@ -2,6 +2,8 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
+//= require bootstrap/jquery.min.js
+//= require bootstrap/popper.min.js
 //= require bootstrap/bootstrap.min.js
 //= require jquery-ui
 //= require cocoon

@@ -17,6 +17,7 @@ class WishlistsController < InheritedResources::Base
   def show
     @favorites = current_user.wishlists.all
   end
+
   def destroy
     @favorite = Wishlist.find(params[:id])
     @favorite.destroy

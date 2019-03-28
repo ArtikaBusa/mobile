@@ -2,20 +2,24 @@ class OrderController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @products = Product.where(id: params[:id])
-    @seller_product_variants = SellerProductVariant.where(id: params[:seller_product_variant_id])
-
+    @product = Product.find_by(id: params[:id])
+    @seller_product_variant = SellerProductVariant.where(id: params[:seller_product_variant_id])
+    @time = Time.at(@product.release_year).strftime('%B %e, %Y at %I:%M %p')
     puts '-------'
-    puts @seller_product_variants.to_json
+    puts @product.to_json
     puts '--------'
   end
 
   def payment
-    @products = Product.where(id: params[:id])
-    @seller_product_variants = SellerProductVariant.where(id: params[:seller_product_variant_id])
+    @product = Product.find_by(id: params[:id])
+    @time = Time.at(@product.release_year).strftime('%B %e, %Y at %I:%M %p')
+    @seller_product_variant = SellerProductVariant.where(id: params[:seller_product_variant_id])
     @product_variant = ProductVariant.joins(:seller_product_variants).where(seller_product_variants: { id: params[:seller_product_variant_id] })
-    @seller = SellerProductVariant.find_by(params[:seller_product_variant_id])
-
+    @seller = SellerProductVariant.find_by(id: params[:seller_product_variant_id])
+    @orders = current_user.orders.all
+    puts '--------------'
+    puts @orders.to_json
+    puts '---------------'
     @order = current_user.orders.new(seller_id: @seller.seller_product.seller_id, product_variant_id: @product_variant.ids, price: @seller.price, discount: @seller.discount, final_price: @seller.final_price, seller_product_variant_id: params[:seller_product_variant_id])
   end
 
@@ -31,9 +35,11 @@ class OrderController < ApplicationController
   end
 
   def confirmation
-    @products = Product.where(id: params[:id])
-    @seller_product_variants = SellerProductVariant.where(id: params[:seller_product_variant_id])
-    @product_variant = ProductVariant.joins(:seller_product_variants).where(seller_product_variants: { id: params[:seller_product_variant_id] })
+    @seller_product_variant = SellerProductVariant.where(id: params[:seller_product_variant_id])
+    @order = current_user.orders.where(seller_product_variant_id: params[:seller_product_variant_id]).last
+    puts '-----------'
+    puts @order.to_json
+    puts '------'
   end
 
   private

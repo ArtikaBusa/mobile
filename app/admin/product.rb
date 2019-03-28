@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :description, :available, :release_year, :brand_id
+  permit_params :description, :available, :release_year, :brand_id, mobile_photos: []
 
   index do
     selectable_column
@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
     column :available
     column :release_year
     column :brand_id
+    column :mobile_photos
     actions
   end
 
@@ -15,6 +16,7 @@ ActiveAdmin.register Product do
   filter :available
   filter :release_year
   filter :brand_id
+  filter :mobile_photos
 
   form do |f|
     f.inputs do
@@ -22,6 +24,7 @@ ActiveAdmin.register Product do
       f.input :available
       f.input :release_year
       f.input :brand_id
+      f.input :mobile_photos, as: :file, input_html: { multiple: true }
     end
     f.actions
   end

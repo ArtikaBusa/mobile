@@ -1,15 +1,30 @@
 %br/
 - if @order.empty?
-  there is no record
+  .text-center
+    .card
+      %h5 No orders yet!
 - else
-  .row
-    - @order.each do |order|
+  .container
+    .row
       .card.showproduct
-        .margin
-          .row
-            .col-sm-5
-              %strong Product Name:
-            .col-sm-5
-              = order.seller_product_variant.seller_product.product.description
-        .card-footer
-          = link_to "show", vender_order_path(order), class: "btn btn-success"
+        .card-header
+          My Order
+        .card-body
+          - @order.each do |orders|
+            .row
+              .col-3
+                = image_tag(orders.seller_product_variant.product_variant.product.mobile_photos.first, width: "100px", height: "150px")
+              .col-7
+                = orders.seller_product_variant.product_variant.product.description
+                %br/
+                = orders.seller_product_variant.product_variant.product.brand.name
+                %br/
+                %strong User :
+                = orders.user.name
+                %br/
+                %strong order date:
+                = orders.ordered_date.strftime("%B %d at %I:%M %p")
+              .col-2
+                .icon-size
+                  = link_to fa_icon("eye"),vender_order_path(orders)
+              %hr/

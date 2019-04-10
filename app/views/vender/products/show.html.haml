@@ -15,7 +15,7 @@
             #imgtext
     .container
       = link_to 'Back', vender_products_path, class: "btn btn-success"
-  .col-sm-6
+  .col-sm-7
     %h4= @vender_product.product.description
     %h4= @vender_product.product.brand.name
     - @vender_product.product.product_categories.each do |category|
@@ -47,7 +47,9 @@
             = seller_product_variant.product_variant.front_camera
             MP
             %br/
+
             .form-group.row
+
               .col-2
                 %strong.text-success Price
                 = seller_product_variant.price

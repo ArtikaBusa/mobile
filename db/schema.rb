@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_28_145103) do
+ActiveRecord::Schema.define(version: 2019_04_09_115532) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -86,6 +86,24 @@ ActiveRecord::Schema.define(version: 2019_03_28_145103) do
     t.string "name", limit: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "import_records", force: :cascade do |t|
+    t.string "name"
+    t.integer "no_of_success_record"
+    t.integer "no_of_failure_record"
+    t.string "error"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "imported_files", force: :cascade do |t|
+    t.integer "no_of_success_record"
+    t.integer "no_of_failure_record"
+    t.string "error"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "file_name"
   end
 
   create_table "orders", force: :cascade do |t|

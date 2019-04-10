@@ -1,0 +1,25 @@
+
+%strong.text-success Hi
+%strong.text-success= @seller.name.upcase
+%br/
+%strong.text-success Product Details
+%br/
+= @order.seller_product_variant.product_variant.product.description
+%br/
+₹
+= @order.final_price
+%br/
+%strong.text-success User Details
+%br/
+= @order.user.name
+%br
+= @order.address
+= @order.city
+= @order.state
+= @order.pincode
+%br/
+Email :
+= @order.user.email
+%br/
+Contact no:
+= @order.user.contact_no

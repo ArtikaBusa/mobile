@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  available: false
+  release_year: MyString
+  brand_id: 
+  no_of_success_record: 1
+  no_of_failure_record: 1
+  error: MyString
+
+two:
+  description: MyString
+  available: false
+  release_year: MyString
+  brand_id: 
+  no_of_success_record: 1
+  no_of_failure_record: 1
+  error: MyString

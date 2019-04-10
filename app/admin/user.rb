@@ -24,13 +24,12 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :name
       f.input :email
       f.input :contact_no
       f.input :address
       f.input :password
       f.input :password_confirmation
-      f.input :profile_photo
+      f.input :profile_photo, as: :file
     end
     f.actions
   end

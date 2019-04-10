@@ -5,13 +5,15 @@ ruby '2.5.1'
 gem 'activeadmin'
 gem 'cocoon'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'haml-rails', '>= 0.3.4', group: :development
 gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'rails', '~> 5.2.1'
-gem "font-awesome-rails"
+gem 'redis'
+gem 'sidekiq'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'

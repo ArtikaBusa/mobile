@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  validates :description, :available, presence: true
   belongs_to :brand
   has_many :product_variants
   has_many :colors, through: :product_variants

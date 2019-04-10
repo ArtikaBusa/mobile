@@ -1,0 +1,27 @@
+.text-center
+  = image_tag attachments['Logo.png'].url, height: "30%",width: "30%"
+%br/
+%strong Hi
+%strong= @user.name.upcase
+%br/
+%strong Your order is confirm
+%br/
+Thank you for shopping with MobileStore
+%br/
+%br/
+%strong.text-success Payment Details
+%br/
+Amount paid :
+₹
+= @order.final_price
+%br/
+%br/
+%strong.text-success Delivery Address
+%br/
+= @order.address
+= @order.city
+= @order.state
+= @order.pincode
+%br/
+contact no:
+= @user.contact_no

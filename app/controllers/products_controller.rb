@@ -45,7 +45,9 @@ class ProductsController < ApplicationController
 
   def show
     @price = ProductVariant.where(product_id: params[:id]).pluck(:price)
-    @wishlist = current_user.wishlists.find_by(product_id: params[:id])
+    if user_signed_in?
+      @wishlist = current_user.wishlists.find_by(product_id: params[:id])
+    end
     @time = Time.at(@product.release_year).strftime('%B %e, %Y at %I:%M %p')
     puts '---------'
     puts @time.to_json
@@ -55,7 +57,7 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
   end
 
   def product_params

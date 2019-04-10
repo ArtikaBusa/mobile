@@ -45,7 +45,7 @@
               = form_tag products_path, method: 'get',class: 'form-inline' do
                 = text_field_tag :search, params[:search], placeholder: 'Search', class: "form-control"
                 %span.input-group-btn
-                  = submit_tag "Search", class: 'btn btn-success'
+                  = submit_tag t('common.search'), class: 'btn btn-success'
           %li.nav-item
             .signin
               = link_to "Sign In", "#sign-in", class: "nav-link", "data-toggle" => "modal"

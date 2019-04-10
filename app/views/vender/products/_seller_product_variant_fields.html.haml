@@ -5,11 +5,21 @@
     .form-group.row
       .col-sm-3
         .form-check-label Price
-        = f.number_field :price, class: "form-control"
+        = f.number_field :price, onblur: "calculate_finalprice(this);", class: "form-control"
       .col-sm-3
         .form-check-label Discount
-        = f.number_field :discount, class: "form-control"
+        = f.number_field :discount, onblur: "calculate_finalprice(this);", class: "form-control"
       .col-sm-3
         .form-check-label Final Price
-        = f.text_field :final_price, class: "form-control"
+        = f.text_field :final_price, onblur: "calculate_finalprice(this);", class: "form-control"
     = link_to_remove_association fa_icon("trash"), f, class: "remove"
+:javascript
+  function calculate_finalprice(ele){
+    var ids = ele.id;
+    var name = ids.split("_");
+    var element = name[7];
+    var value = element.value;
+
+    console.log(value);
+
+    }

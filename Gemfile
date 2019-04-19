@@ -14,6 +14,7 @@ gem 'kaminari'
 gem 'rails', '~> 5.2.1'
 gem 'redis'
 gem 'sidekiq'
+gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'

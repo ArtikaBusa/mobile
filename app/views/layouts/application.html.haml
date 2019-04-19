@@ -47,8 +47,12 @@
                 %span.input-group-btn
                   = submit_tag t('common.search'), class: 'btn btn-success'
           %li.nav-item
+            = link_to "Gujarati", {:locale => 'gu'}, class: "nav-link"
+          %li.nav-item
+            = link_to "English", {:locale => 'en'}, class: "nav-link"
+          %li.nav-item
             .signin
-              = link_to "Sign In", "#sign-in", class: "nav-link", "data-toggle" => "modal"
+              = link_to t('common.signin'), "#sign-in", class: "nav-link", "data-toggle" => "modal"
               %div{ id: "sign-in", class: "modal fade"}
                 .modal-dialog
                   .modal-content
@@ -61,7 +65,7 @@
 
           %li.nav-item
             .signup
-              = link_to "Sign Up", "#sign-up", class: "nav-link", "data-toggle" => "modal"
+              = link_to t('common.signup'), "#sign-up", class: "nav-link", "data-toggle" => "modal"
               .modal#sign-up
                 .modal-dialog
                   .modal-content

@@ -10,13 +10,14 @@
                   = image_tag(mobile_photo, size: "80", onclick: "set_image(this);",class:"list-group-item")
         .col-sm-6
           .container
-            = image_tag(@product.mobile_photos.first, style: "width:100%", class: "hide")
-            %img{ id: "expandedImg" ,style: "width:100%"}
+            - if @product.mobile_photos.attached?
+              = image_tag(@product.mobile_photos.first, style: "width:100%", class: "hide")
+              %img{ id: "expandedImg" ,style: "width:100%"}
 
   .col-sm-6
     %h4= @product.description
     %h4= @product.brand.name
-    = @time
+    = @product.release_year.strftime('%B %e, %Y at %I:%M %p')
     %br/
     - @product.product_categories.each do |category|
       = category.category.name
@@ -123,8 +124,6 @@
   function set_image(imgs){
     $(".hide").hide();
     var expandImg = document.getElementById("expandedImg");
-    var imgText = document.getElementById("imgtext");
     expandImg.src = imgs.src;
-    imgText.innerHTML = imgs.alt;
     expandImg.parentElement.style.display = "block";
   }

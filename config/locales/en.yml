@@ -2,3 +2,7 @@ en:
   hello: 'Hello world'
   common:
     search: 'Search'
+    signin: 'Sign In'
+    signup: 'Sign Up'
+  mobile:
+    latest: 'Latest Mobile'

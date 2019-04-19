@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vender
   # :nodoc:
   class OrdersController < ApplicationController

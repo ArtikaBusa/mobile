@@ -28,9 +28,6 @@ module Vender
           format.html { redirect_to vender_products_url, notice: 'Product was successfully created.' }
           format.json { render :show, status: :created, location: vender_products_url }
         else
-          puts '----'
-          puts @vender_product.errors.full_messages
-          puts '----'
           format.html { render :new }
           format.json { render json: @vender_product.errors, status: :unprocessable_entity }
         end

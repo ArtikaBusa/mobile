@@ -2,9 +2,9 @@
   .container
     .row
       .col-sm-5.mx-auto
-        .card.bg-light
+        .card.card-light
           .card-header
-            %h5.card-title.text-center Sign up
+            .text-center Sign up
           .card-body
             = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
               .field
@@ -37,7 +37,7 @@
               .field
                 = f.label :profile_photo
                 = f.file_field :profile_photo, autofocus: true, autocomplete: "profile_photo",:class =>"form-control"
-                
+
               %br/
               .actions
                 = f.submit "sign up" ,:class => "btn btn-lg btn-success btn-block"

@@ -2,3 +2,7 @@ gu:
   hello: 'હેલો વર્લ્ડ'
   common:
     search: 'શોધો'
+    signin: 'સાઇન ઇન કરો'
+    signup: 'સાઇન અપ કરો'
+  mobile:
+    latest: 'નવીનતમ મોબાઇલ'

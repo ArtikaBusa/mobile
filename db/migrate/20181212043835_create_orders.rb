@@ -5,9 +5,9 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.belongs_to :seller, index: true
       t.belongs_to :seller_product_variant, index: true
       t.belongs_to :product_variant, index: true
-      t.decimal :price, limit: 7
-      t.decimal :discount, limit: 7
-      t.decimal :final_price, limit: 7
+      t.decimal :price
+      t.decimal :discount
+      t.decimal :final_price
       t.string :address, limit: 500
       t.string :city, limit: 100
       t.string :state, limit: 100

@@ -301,7 +301,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   font-awesome-rails
-  haml-rails
+  haml-rails (>= 0.3.4)
   image_processing (~> 1.2)
   jbuilder (~> 2.5)
   jquery-rails

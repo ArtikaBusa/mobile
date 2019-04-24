@@ -6,7 +6,7 @@ gem 'activeadmin'
 gem 'cocoon'
 gem 'devise'
 gem 'font-awesome-rails'
-gem 'haml-rails', '>= 0.3.4', group: :development
+gem 'haml-rails', '>= 0.3.4'
 gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

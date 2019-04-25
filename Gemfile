@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 gem 'activeadmin'
+gem 'aws-sdk-s3', require: false
 gem 'cocoon'
 gem 'devise'
 gem 'font-awesome-rails'
@@ -13,10 +14,11 @@ gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
-gem 'pg'
+gem 'pg', group: :production
 gem 'rails', '~> 5.2.1'
 gem 'redis'
 gem 'sidekiq'
+gem 'sqlite3', group: :development
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # Use sqlite3 as the database for Active Recor
 # Use Puma as the app server

@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password')
+AdminUser.create!(email: 'admin1@example.com', password: 'password')
 Brand.create!([{ name: 'Apple' }, { name: 'Samsung' }, { name: 'Oppo' },
                { name: 'Vivo' }, { name: 'Mi' }])
 Color.create!([{ name: 'Gold' }, { name: 'Silver' }, { name: 'Black' },

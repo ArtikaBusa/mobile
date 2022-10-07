@@ -7,11 +7,11 @@
       %li{"data-slide-to": "2", "data-target": "#demo"}
     .carousel-inner
       .carousel-item.active
-        = image_tag('phone.jpg',size: "1300x500", class: 'fill img-responsive')
+        = image_tag('phone.jpg',size: "1300x500", class: 'fill img-responsive w-100')
       .carousel-item
-        = image_tag('iphone.jpg',size: "1300x500", class: 'fill img-responsive')
+        = image_tag('iphone.jpg',size: "1300x500", class: 'fill img-responsive w-100')
       .carousel-item
-        = image_tag('mobiles.jpg',size: "1300x500", class: 'fill img-responsive')
+        = image_tag('mobiles.jpg',size: "1300x500", class: 'fill img-responsive w-100')
     %a.carousel-control-prev{"data-slide" => "prev", href: "#slides", role: "button"}
       %span.carousel-control-prev-icon{"aria-hidden" => "true"}
       %span.sr-only Previous
@@ -19,12 +19,13 @@
       %span.carousel-control-next-icon{"aria-hidden" => "true"}
       %span.sr-only Next
 %br
-= link_to image_tag( 'apple.png'), products_path(:brand_id => "1"), class: "butt"
-= link_to image_tag( 'blackberry.png'), products_path(:brand_id => "2"), class: "butt"
-= link_to image_tag( 'honor.png'), products_path(:brand_id => "3"), class: "butt"
-= link_to image_tag( 'oneplus-logo.png'), products_path(:brand_id => "4"), class: "butt"
-= link_to image_tag( 'samsung.png'), products_path(:brand_id => "5"), class: "butt"
-= link_to image_tag( 'sony.png'), products_path(:brand_id => "6"), class: "butt"
+.w-100.d-flex.justify-content-around
+  = link_to image_tag( 'apple.png'), products_path(:brand_id => "1"), class: "butt"
+  = link_to image_tag( 'blackberry.png'), products_path(:brand_id => "2"), class: "butt"
+  = link_to image_tag( 'honor.png'), products_path(:brand_id => "3"), class: "butt"
+  = link_to image_tag( 'oneplus-logo.png'), products_path(:brand_id => "4"), class: "butt"
+  = link_to image_tag( 'samsung.png'), products_path(:brand_id => "5"), class: "butt"
+  = link_to image_tag( 'sony.png'), products_path(:brand_id => "6"), class: "butt"
 %br/
 %br/
 %hr/

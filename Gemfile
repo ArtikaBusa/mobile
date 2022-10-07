@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '3.1.1'
 gem 'activeadmin'
 gem 'aws-sdk-s3', require: false
 gem 'cocoon'
@@ -15,7 +15,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'pg', group: :production
-gem 'rails', '~> 5.2.1'
+gem 'rails', "~> 7.0.4"
 gem 'redis'
 gem 'sidekiq'
 gem 'sqlite3', group: :development
